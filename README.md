@@ -52,4 +52,4 @@ OAuth
 Convert scanned copy (image) of CC&R’s to a searchable digital document.
 
 6. What is the technology stack?
-   PostgreSQL, React, Express
+   Supabase, React, Express
