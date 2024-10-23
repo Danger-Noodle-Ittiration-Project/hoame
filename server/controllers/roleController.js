@@ -53,7 +53,7 @@ roleController.checkPermissions = (requiredRoles) => {
       }
 
       // continue if user has required role
-      next();
+      return next();
     } catch (err) {
       console.error('Error in checkPermissions middleware:', err);
       return res
