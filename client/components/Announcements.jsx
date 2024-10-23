@@ -85,6 +85,10 @@ const Announcements = () => {
     try {
       await fetch(`http://localhost:3000/api/announcements/${id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
       });
 
       // update state to remove deleted announcement from UI

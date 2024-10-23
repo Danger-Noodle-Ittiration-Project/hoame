@@ -30,10 +30,10 @@ const Dashboard = ({ onLogout }) => {
     console.log(e.target.value);
     setActiveTab(e.target.value);
   };
-  // function to handle user logout
-  const handleLogout = () => {
-    onLogout(false);
-  };
+  // function to handle user logout [deprecated]
+  // const handleLogout = () => {
+  //   onLogout(false);
+  // };
 
   // function to see user's own name appear
   // const getFirstName = async () => {

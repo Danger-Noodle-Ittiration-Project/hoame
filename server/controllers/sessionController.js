@@ -82,7 +82,7 @@ sessionController.isAuthenticated = async (req, res, next) => {
 
     const currentTime = new Date(); // get current time
     const session = result.rows[0]; // get session details such as expires_time
-
+    console.log('sessionController.isAuthenticated check:', session);
     // check for session expiration
     if (currentTime > session.expires_time)
       return res.status(401).json({
