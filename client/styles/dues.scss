@@ -1,0 +1,28 @@
+$primary-color: #f45866; //primary actions and buttons
+$secondary-color: #a2666f; //for backgrounds, secondary actions or less prominent elements
+$tertiary-color: #c45ab3; //Use for highlights, links, or accent elements
+$fourth-color: #631a86; // Use for jeaders, titles and emphasis especially for text
+$fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
+
+.payButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.payButton {
+  width: 25%;
+  padding: 1.5em;
+  border: none;
+  background-color: $fourth-color;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+  // margin-bottom: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: $secondary-color;
+}
