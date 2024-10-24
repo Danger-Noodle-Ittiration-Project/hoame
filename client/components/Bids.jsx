@@ -117,7 +117,8 @@ Different approach with a reset of form fields
                 type='file'
                 onChange={selectFile}
                 className='inputButton'
-                accept='application/*, image/*'
+                // accept='application/*, image/*'  // * wildcard didn't work - BMA
+                accept='.pdf, .doc, .docx, .xls, .xlsx, image/*' // changed from application/* to specific file types
                 required
               />
             </div>
