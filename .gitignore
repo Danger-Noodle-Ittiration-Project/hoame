@@ -9,3 +9,6 @@ dist/
 
 # not sure what this is for.  Copied it from other units - BMA
 .vscode/
+
+
+package-lock.json

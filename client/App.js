@@ -12,7 +12,7 @@ const App = () => {
   // state to track user logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // funciton to handle logout and update state
+  // function to handle logout and update state
   const handleLogout = () => {
     setIsLoggedIn(false); // This will handle updating the state to reflect logged out status
   };
