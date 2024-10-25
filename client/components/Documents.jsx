@@ -116,6 +116,9 @@ const getMimeType = (filename) => {
       return 'text/html';
     case 'csv':
       return 'text/csv';
+      // Added docx for Word docs, however it prompts to download.  Won't view in browser - BMA
+      case 'docx':
+        return 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
     default:
       return 'application/octet-stream'; // Default for unknown types
   }
