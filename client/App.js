@@ -16,9 +16,9 @@ const App = () => {
   const handleLogout = () => {
     setIsLoggedIn(false); // This will handle updating the state to reflect logged out status
   };
-const handleSignUp = () => {
-  setIsLoggedIn(true);
-};
+  const handleSignUp = () => {
+    setIsLoggedIn(true);
+  };
   return (
     <Routes>
       {/*if logged in then redirect to dashboard, else redirect to login */}
