@@ -32,7 +32,7 @@ const CheckoutForm = () => {
     const amount = 10000; //cents
 
     // Create the PaymentIntent and obtain clientSecret from your server endpoint
-    const res = await fetch('/create-payment-intent', {
+    const res = await fetch('http://localhost:3000/api/create-payment-intent', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ const CheckoutForm = () => {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: 'https://example.com/order/123/complete',
+        return_url: 'http://localhost:8080/dashboard',
       },
     });
 
