@@ -56,9 +56,25 @@ userController.signup = async (req, res, next) => {
       });
     }
 
-    res.locals.account = newUser.rows;
-    // Debugging log to check if account is populated
-    //console.log('Signup successful, res.locals.account:', res.locals.account);
+    const userId = newUser.rows[0].id;
+    const userFirstName = newUser.rows[0].first_name;
+
+    // Optionally, fetch roles if you want them available right after signup
+    const roles = await roleController.getUserRoles(userId); // Fetch roles for the new user
+
+    // Set user info (including roles) in session
+    req.session.user = {
+      id: userId,
+      username: newUser.rows[0].username,
+      roles: roles, // Store the user's roles in the session
+    };
+
+    // Store user details in res.locals for further middleware or response
+    res.locals.account = [{ ...newUser.rows[0], roles }];
+    res.locals.firstName = userFirstName;
+
+    console.log('Signup successful, session user data:', req.session.user); // Debug log
+
     return next();
   } catch (err) {
     console.log(err);
