@@ -6,6 +6,7 @@ import Directory from './Directory';
 import Documents from './Documents';
 import Bids from './Bids';
 import Dues from './Dues';
+import VotingBoard from './VotingBoard'
 import Logout from './Logout';
 import home from '../styles/assets/png_h5pgb.png';
 /*
