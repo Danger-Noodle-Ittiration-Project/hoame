@@ -4,6 +4,7 @@ const documentController = require('../controllers/documentController');
 const announcementController = require('../controllers/announcementController');
 const cookieController = require('../controllers/cookieController.js');
 const sessionController = require('../controllers/sessionController.js');
+const voteController = require('../controllers/voteController.js');
 //const roleController = require("./server/controllers/roleController");
 const roleController = require('../controllers/roleController');
 
@@ -124,6 +125,7 @@ router.delete(
 
 router.get(
   '/vote', 
+  voteController.getQuestions,
   (req, res) => {
     return res.status(200).json(res.locals.questions);
   }

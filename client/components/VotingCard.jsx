@@ -10,7 +10,7 @@ const VotingCard = (props) => {
 
   return (
     <div>
-      {props.title}
+      <h2>{props.title}</h2>
       {props.description}
       {props.totalVotes}
       <button onClick={answer(true)}>Yes</button>
@@ -18,3 +18,5 @@ const VotingCard = (props) => {
     </div>
   );
 };
+
+export default VotingCard;
