@@ -11,6 +11,9 @@ const roleController = require('../controllers/roleController');
 const multer = require('multer');
 const upload = multer();
 
+//require stripe
+const stripe = require('stripe')('sk_test_51QDFF8ANkqZlajimk7PB1U1Hu6yEUKSgsWCtYHartsMg31cfrHVDDo0Gz0Jgw0MI3yFJjuTdeXwprkFRcBVkBCfC004pjydbus');
+
 const router = express.Router();
 
 // route to get all users
@@ -118,6 +121,38 @@ router.delete(
     return res.status(200).json(res.locals.deletedDoc);
   }
 );
+
+router.get(
+  '/vote', 
+  (req, res) => {
+    return res.status(200).json(res.locals.questions);
+  }
+)
+
+router.patch(
+  '/vote/:questionID', (req, res) =>{
+    return res.status(200).json({});
+  }
+)
+
+//stripe payment
+router.post('/create-payment-intent', async (req, res) => {
+  try {
+    const {amount} = req.body;
+  
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: amount,
+      currency: 'usd',
+      automatic_payment_methods: {
+        enabled: true,
+      },
+    })
+
+    return res.json({ client_secret: paymentIntent.client_secret });
+  } catch (err) {
+    console.log(err);
+  }
+})
 
 // route for file upload.   --- Not in use
 // router.post(

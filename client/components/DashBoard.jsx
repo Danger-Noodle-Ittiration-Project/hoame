@@ -16,7 +16,8 @@ import home from '../styles/assets/png_h5pgb.png';
 
 const Dashboard = ({ onLogout }) => {
   const location = useLocation();
-  const firstName = location.state.prop;
+  const firstName = location.state?.prop || 'Guest';
+  console.log('firstName:',firstName)
   // console.log("FIRSTNAME", firstName)
   // state to track current active tab, default is announcements
   const [activeTab, setActiveTab] = useState('Announcements');
@@ -80,6 +81,9 @@ const Dashboard = ({ onLogout }) => {
         <button onClick={handleClick} className='tab'>
           Dues
         </button>
+        <button onClick={handleClick} className='tab'>
+          VotingBoard
+        </button>
       </nav>
 
       {/* Render componets based on the active tab*/}
@@ -89,6 +93,7 @@ const Dashboard = ({ onLogout }) => {
         {activeTab === 'Directory' && <Directory />}
         {activeTab === 'Bids' && <Bids />}
         {activeTab === 'Dues' && <Dues />}
+        {activeTab === 'VotingBoard' && <VotingBoard />}
       </div>
     </div>
   );

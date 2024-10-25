@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'; // Import routing co
 import Dashboard from './components/DashBoard';
 import Login from './components/Login';
 import { useState } from 'react';
-
+import SignUp from './components/SignUp';
 /*
   Handles routing and manages login state
 */
@@ -16,7 +16,9 @@ const App = () => {
   const handleLogout = () => {
     setIsLoggedIn(false); // This will handle updating the state to reflect logged out status
   };
-
+const handleSignUp = () => {
+  setIsLoggedIn(true);
+};
   return (
     <Routes>
       {/*if logged in then redirect to dashboard, else redirect to login */}
@@ -29,7 +31,8 @@ const App = () => {
 
       {/* define login route */}
       <Route path='/login' element={<Login onLogin={setIsLoggedIn} />} />
-
+      {/* Define signup route */}
+      <Route path='/signup' element={<SignUp onSignUp={handleSignUp} />} />
       {/* define dashboard route, and logout handling */}
       <Route
         path='/dashboard'
