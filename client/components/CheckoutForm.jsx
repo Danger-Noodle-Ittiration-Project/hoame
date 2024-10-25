@@ -29,9 +29,15 @@ const CheckoutForm = () => {
       return;
     }
 
+    const amount = 10000; //cents
+
     // Create the PaymentIntent and obtain clientSecret from your server endpoint
-    const res = await fetch('/create-intent', {
+    const res = await fetch('/create-payment-intent', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({amount}),
     });
 
     const {client_secret: clientSecret} = await res.json();

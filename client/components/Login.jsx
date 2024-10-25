@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 /*
   Handles user authenticaion with input for username and password
   along with a login button and when successful login it goes to dashboard
@@ -94,6 +94,9 @@ const Login = ({ onLogin }) => {
             {' '}
             Login with Google{' '}
           </button>
+          <p>
+            Don't have an account? <Link to='/signup'>Sign Up</Link>
+          </p>
         </div>
       </div>
     </div>
