@@ -28,7 +28,10 @@ router.post(
   sessionController.startSession, //start a session an post to the database
   cookieController.setCookie,
   (req, res) => {
-    res.status(201).json(res.locals.account);
+    res.status(201).json({
+      message: 'Signup successful',
+      account: res.locals.account, // Sending the account information back to the client
+    });
   }
 );
 // route to login

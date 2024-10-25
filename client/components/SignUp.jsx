@@ -21,32 +21,32 @@ const SignUp = ({ onSignUp }) => {
     }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const response = await fetch('http://localhost:3000/api/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('http://localhost:3000/api/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (response.ok) {
-      console.log('Signup successful:', data);
-      onSignUp(); // Update the logged-in state to true
-      navigate('/dashboard', { state: { prop: formData.first_name } }); // Pass first_name to Dashboard
-    } else {
-      console.error('Signup error:', data.message.err);
-      alert('Signup failed. Please try again.');
+      if (response.ok) {
+        console.log('Signup successful:', data);
+        onSignUp(); // Update the logged-in state to true
+        navigate('/dashboard', { state: { prop: formData.first_name } }); // Pass first_name to Dashboard
+      } else {
+        console.error('Signup error:', data.message.err);
+        alert('Signup failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error signing up:', error);
+      alert('An error occurred during signup. Please try again later.');
     }
-  } catch (error) {
-    console.error('Error signing up:', error);
-    alert('An error occurred during signup. Please try again later.');
-  }
-};
+  };
 
   return (
     <div>
