@@ -5,6 +5,7 @@ import Announcements from './Announcements';
 import Directory from './Directory';
 import Documents from './Documents';
 import Bids from './Bids';
+import Dues from './Dues';
 import Logout from './Logout';
 import home from '../styles/assets/png_h5pgb.png';
 /*
@@ -76,6 +77,9 @@ const Dashboard = ({ onLogout }) => {
         <button onClick={handleClick} className='tab'>
           Directory
         </button>
+        <button onClick={handleClick} className='tab'>
+          Dues
+        </button>
       </nav>
 
       {/* Render componets based on the active tab*/}
@@ -84,6 +88,7 @@ const Dashboard = ({ onLogout }) => {
         {activeTab === 'Documents' && <Documents />}
         {activeTab === 'Directory' && <Directory />}
         {activeTab === 'Bids' && <Bids />}
+        {activeTab === 'Dues' && <Dues />}
       </div>
     </div>
   );
