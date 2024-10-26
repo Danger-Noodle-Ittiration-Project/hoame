@@ -24,6 +24,7 @@ cookieController.setCookie = (req, res, next) => {
     maxAge: 60 * 60 * 1000, // 1 hour
   });
 
+
   console.log('Cookie set successfully: ', res.locals.session.id);
   return next();
 };
