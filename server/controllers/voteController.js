@@ -23,7 +23,7 @@ voteController.getQuestions = async (req,res,next)=>{
 
 voteController.getVotes = async (req, res, next) =>{
   try{
-    const query = 'SELECT questions_id, yes_vote, no_vote FROM users_questions';
+    const query = 'SELECT * FROM users_questions';
     const allVotes = await db.query(query);
     const votes = allVotes.rows;
     res.locals.votes = votes;

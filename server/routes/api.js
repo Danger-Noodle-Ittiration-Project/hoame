@@ -130,10 +130,11 @@ router.delete(
 
 router.get(
   '/vote', 
+  userController.getUserId,
   voteController.getQuestions,
   voteController.getVotes,
   (req, res) => {
-    return res.status(200).json({questions: res.locals.questions, votes: res.locals.votes});
+    return res.status(200).json({questions: res.locals.questions, votes: res.locals.votes, userId: res.locals.userId.rows[0].user_id,});
   }
 )
 

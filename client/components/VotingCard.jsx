@@ -16,15 +16,22 @@ const VotingCard = (props) => {
     <div>
       <h2>{props.title}</h2>
       {props.description}
+
       <div>
         <p>Total Votes: {props.totalVotes}</p>
         {adminView}
+        <div>
+          You {props.voted ? 'have': 'have not'} voted on this proposal
+        </div>
       </div>
-      
-      <div>
-        <button onClick={helper} value={'y'}>Yes</button>
-        <button onClick={helper} value={'n'}>No</button>
-      </div>
+
+      {!props.voted 
+      ? <div>
+          <button onClick={helper} value={'y'}>Yes</button>
+          <button onClick={helper} value={'n'}>No</button>
+        </div>
+        : <div></div>
+      }
       
     </div>
   );
