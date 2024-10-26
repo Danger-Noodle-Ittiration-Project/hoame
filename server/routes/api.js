@@ -129,15 +129,17 @@ router.delete(
 router.get(
   '/vote', 
   voteController.getQuestions,
+  voteController.getVotes,
   (req, res) => {
-    return res.status(200).json(res.locals.questions);
+    return res.status(200).json({questions: res.locals.questions, votes: res.locals.votes});
   }
 )
 
 router.patch(
-  '/vote/:questionID',
+  '/vote/answer',
+  voteController.answerQuestions,
    (req, res) =>{
-    return res.status(200).json({});
+    return res.status(200).json(res.locals.questions);
   }
 )
 
