@@ -42,7 +42,7 @@ voteController.getVotes = async (req, res, next) =>{
 voteController.answerQuestions = async (req, res, next) =>{
   try{
     const body = [
-      req.body.userId,
+      res.locals.userId.rows[0].user_id,
       req.body.questionId,
       req.body.yes,
       req.body.no,
@@ -57,7 +57,7 @@ voteController.answerQuestions = async (req, res, next) =>{
     return next();
 
 }catch(err){
-    console.log('voteController.getQuestions catch:', err);
+    console.log('voteController.answerQuestions catch:', err);
     next({
         log: 'getQuestions',
         message: {

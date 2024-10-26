@@ -12,6 +12,7 @@ const VotingBoard = ()=>{
           headers: {
             'Content-Type': 'application/json',
           },
+          credentials: 'include',
           body: JSON.stringify({
             userId: '1',
             questionId: question,
