@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const VotingCard = (props) => {
-  function answer(bool) {
+
+  function answer(e) {
     fetch(`http://localhost:3000/api/vote/${props.id}`, {
       method: 'PATCH',
-      body: { answer: bool },
+      body: { answer: e.innerHTML },
     });
   }
 
@@ -13,8 +14,11 @@ const VotingCard = (props) => {
       <h2>{props.title}</h2>
       {props.description}
       {props.totalVotes}
-      <button onClick={answer(true)}>Yes</button>
-      <button onClick={answer(false)}>No</button>
+      <div>
+        <button onClick={answer}>Yes</button>
+        <button onClick={answer}>No</button>
+      </div>
+      
     </div>
   );
 };
