@@ -7,6 +7,7 @@ const sessionController = require('../controllers/sessionController.js');
 const voteController = require('../controllers/voteController.js');
 //const roleController = require("./server/controllers/roleController");
 const roleController = require('../controllers/roleController');
+const duesController = require('../controllers/duesController.js');
 
 //require multer for /upload endpoint
 const multer = require('multer');
@@ -41,6 +42,7 @@ router.post(
   userController.login,
   sessionController.startSession, // start session after good login
   cookieController.setCookie, // set cookie after session creation
+  // duesController.checkStatus,
   (req, res) => {
     // console.log('RESLOCALSFIRSTNAME', res.locals.firstName); //- currently undefined
     res
@@ -138,6 +140,16 @@ router.patch(
   '/vote/:questionID',
    (req, res) =>{
     return res.status(200).json({});
+  }
+)
+
+//route to check dues_paid status
+router.get(
+  '/dues',
+  userController.getUserId,
+  // duesController.checkStatus,
+  (req, res) => {
+    return res.status(200).json(res.locals.userId);
   }
 )
 
