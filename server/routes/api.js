@@ -139,6 +139,7 @@ router.get(
 
 router.patch(
   '/vote/answer',
+  userController.getUserId,
   voteController.answerQuestions,
    (req, res) =>{
     return res.status(200).json(res.locals.questions);
