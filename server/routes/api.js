@@ -160,6 +160,27 @@ router.post('/create-payment-intent', async (req, res) => {
   }
 })
 
+router.get(
+  "/users/pending-approval",
+  sessionController.isAuthenticated,
+  roleController.checkPermissions(["admin"]),
+  userController.getPendingApprovalUsers,
+  (req, res) => {
+    res.status(200).json(res.locals.pendingUsers);
+  }
+);
+
+// api.js
+router.post(
+  '/users/approve',
+  sessionController.isAuthenticated,
+  roleController.checkPermissions(['admin']),
+  roleController.assignRole,
+  (req, res) => {
+    res.status(200).json({ message: 'User approved and role assigned.' });
+  }
+);
+
 // route for file upload.   --- Not in use
 // router.post(
 //   '/upload',

@@ -63,4 +63,31 @@ roleController.checkPermissions = (requiredRoles) => {
   };
 };
 
+
+roleController.assignRole = async (req, res, next) => {
+  const { userId, newRoleId } = req.body;
+
+  try {
+    // Remove 'Pending_approval' role from the user
+    await db.query(
+      "DELETE FROM user_role WHERE users_id = $1 AND role_id = (SELECT id FROM roles WHERE role_name = 'pending_approval')",
+      [userId]
+    );
+
+    // Assign the new role
+    await db.query(
+      'INSERT INTO user_role (users_id, role_id) VALUES ($1, $2)',
+      [userId, newRoleId]
+    );
+
+    res.status(200).json({ message: 'Role assigned successfully and user approved.' });
+  } catch (err) {
+    return next({
+      log: 'Error in roleController.assignRole',
+      message: { err: 'Error assigning role to user.' },
+    });
+  }
+};
+
+
 module.exports = roleController;

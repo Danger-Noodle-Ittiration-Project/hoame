@@ -59,6 +59,12 @@ userController.signup = async (req, res, next) => {
     const userId = newUser.rows[0].id;
     const userFirstName = newUser.rows[0].first_name;
 
+    const roleQuery = `
+      INSERT INTO user_role (users_id, role_id)
+      VALUES ($1, (SELECT id FROM roles WHERE role_name = 'Pending_approval'))
+    `;
+    await db.query(roleQuery, [userId]);
+
     // Optionally, fetch roles if you want them available right after signup
     const roles = await roleController.getUserRoles(userId); // Fetch roles for the new user
 
@@ -140,5 +146,27 @@ userController.login = async (req, res, next) => {
     });
   }
 };
+
+// userController.js
+userController.getPendingApprovalUsers = async (req, res, next) => {
+  try {
+    const query = `
+      SELECT u.*
+      FROM users u
+      JOIN user_role ur ON u.id = ur.users_id
+      JOIN roles r ON ur.role_id = r.id
+      WHERE r.role_name = 'Pending_approval';
+    `;
+    const result = await db.query(query);
+    res.locals.pendingUsers = result.rows;
+    return next();
+  } catch (err) {
+    return next({
+      log: 'Error in userController.getPendingApprovalUsers',
+      message: { err: 'Error fetching users pending approval.' },
+    });
+  }
+};
+
 
 module.exports = userController;
