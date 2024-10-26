@@ -6,12 +6,12 @@ const duesController = {};
 duesController.checkStatus = async (req, res, next) => {
   try {
     console.log('userId from duesController', res.locals.userId)
+    const { userId } = res.locals;
 
-    const duesStatusString = 'SELECT * FROM users';
-    // const usersResult = await db.query(getUsersString);
+    const duesStatusString = 'SELECT dues_paid FROM users WHERE id = $1';
+    // const result = await db.query(duesStatusString, [userId]);
 
-    // const users = usersResult.rows;
-    // res.locals.users = users;
+    // const
     return next();
   } catch (err) {
     console.log(err);
