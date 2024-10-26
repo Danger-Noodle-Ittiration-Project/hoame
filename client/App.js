@@ -36,7 +36,7 @@ const App = () => {
       {/* define dashboard route, and logout handling */}
       <Route
         path='/dashboard'
-        element={<Dashboard onLogout={() => setIsLoggedIn(false)} />}
+        element={<Dashboard onLogout={handleLogout} />}
       />
     </Routes>
   );

@@ -22,7 +22,7 @@ app.use(
     ], // Defining allowed headers
   })
 );
-
+app.use(cookieParser());
 // Session middleware
 app.use(
   session({
@@ -40,7 +40,7 @@ app.use(
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+
 
 app.use('/api', apiRouter);
 
