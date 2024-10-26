@@ -135,7 +135,8 @@ router.get(
 )
 
 router.patch(
-  '/vote/:questionID', (req, res) =>{
+  '/vote/:questionID',
+   (req, res) =>{
     return res.status(200).json({});
   }
 )
