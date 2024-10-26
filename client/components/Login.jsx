@@ -34,9 +34,10 @@ const Login = ({ onLogin }) => {
 
       // upon successful login, update state
       if (response.ok) {
-        onLogin({isLoggedIn: true});
+        onLogin(true);
+        //Using onLogin({ isLoggedIn: true }) tries to pass an object rather than a simple boolean value. Since setIsLoggedIn expects a boolean, this can result in unexpected behavior or errors. The corrected call (onLogin(true)) directly updates the state as intended.
         // onLogin(true); // Update the login state to true
-        navigate('/dashboard', {state: {prop: data.firstName} }); // Redirect to dashboard
+        navigate('/dashboard', { state: { prop: data.firstName } }); // Redirect to dashboard
       } else {
         console.error('Login failed:', data);
       }
