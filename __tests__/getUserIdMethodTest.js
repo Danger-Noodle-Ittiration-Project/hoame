@@ -7,6 +7,11 @@ const path = require('path');
 const server = 'http://localhost:3000';
 
 describe('Route integration', () => {
+
+  //before all/each make request to login route in api with {username, password}
+  //put credentials in a variable
+  //hold on to credentials and use them to logout using after all 
+
   describe('/dues', () => {
     describe('GET', () => {
 
@@ -16,15 +21,14 @@ describe('Route integration', () => {
           .expect('Content-Type', /application\/json/)
           .expect(200)
       })
-
-
-      // it(`should get the user ID from the user's session`, () => {
-      //   return request(server)
-      //   .get('/dues')
-      //   .expect((res) => {
-
-      //   })
-      // })
+      it(`should get the user ID from the user's session`, () => {
+        return request(server)
+        .get('/api/dues')
+        .expect((res) => {
+          expect(res.locals.userId.rows[0].user_id).toBe(1)
+          // expect(res.body).toBe(undefined)
+        })
+      })
     })
   })
 })

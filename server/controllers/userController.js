@@ -151,7 +151,7 @@ userController.getUserId = async (req, res, next) => {
     const result = await db.query(getUserIdFromSession, [ssid]);
 
     res.locals.userId = result;
-    console.log('locals:', res.locals.userId.rows[0].user_id);
+    // console.log('locals:', res.locals.userId.rows[0].user_id);
     return next();
   } catch (err) {
     console.error('Error in userController.getUserId.js: ', err);

@@ -152,7 +152,10 @@ router.get(
   userController.getUserId,
   // duesController.checkStatus,
   (req, res) => {
-    return res.status(200).json(res.locals.userId);
+    
+    // return res.status(200).json({});
+    // return res.status(200).json(res.locals.status);
+    return res.status(200).json(res.locals.userId.rows[0].user_id);
   }
 )
 
