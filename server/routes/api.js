@@ -150,12 +150,22 @@ router.patch(
 router.get(
   '/dues',
   userController.getUserId,
-  // duesController.checkStatus,
+  duesController.checkStatus,
   (req, res) => {
     
     // return res.status(200).json({});
-    // return res.status(200).json(res.locals.status);
-    return res.status(200).json(res.locals.userId.rows[0].user_id);
+    return res.status(200).json(res.locals.status);
+    // return res.status(200).json(res.locals.userId.rows[0].user_id);
+  }
+)
+
+//route to update dues_paid status
+router.patch(
+  '/dues/paid',
+  userController.getUserId,
+  duesController.updateStatus,
+  (req, res) => {
+    return res.status(200).json(res.locals.updated);
   }
 )
 

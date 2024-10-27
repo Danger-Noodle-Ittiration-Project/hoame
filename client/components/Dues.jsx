@@ -8,8 +8,12 @@ import {
   useElements,
 } from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm';
+import PaymentComplete from './PaymentComplete';
 
 const Dues = () => {
+  
+  const [duesStatus, setDuesStatus] = useState(false);
+  const [paymentStatus, setPaymentStatus] = useState(false);
 
   const getDuesStatus = async () => {
     try {
@@ -19,10 +23,14 @@ const Dues = () => {
       });
       const data = await response.json();
       console.log('Fetched data:', data);
-      // setAnnouncements(data); // insert the fetch into state
+      setDuesStatus(data);
     } catch (error) {
       console.log('error fetching users:', error);
     }
+  }
+
+  const handlePaymentStatus = () => {
+    setPaymentStatus(true);
   }
 
   useEffect(() => {
@@ -43,16 +51,27 @@ const Dues = () => {
  
   return (
     <div>
-      <div>
-        <h1>Payment Due: </h1>
-      </div>
+      
+      {duesStatus ? (<div><h1>Dues already paid</h1></div>)
+      : (
 
-      <div>
-        <Elements stripe={stripePromise} options={options}>
-          <CheckoutForm />
-        </Elements>
-      </div>
+        <div>
+          <div>
+            <h1>Payment Due: $100 </h1>
+          </div>
 
+          <div>
+            {paymentStatus ? (<PaymentComplete />)
+            : (
+              <Elements stripe={stripePromise} options={options}>
+                <CheckoutForm onPaymentComplete={handlePaymentStatus}/>
+              </Elements>
+            )}
+          </div>
+        </div>
+
+      )}
+      
     </div>
   )
 }
