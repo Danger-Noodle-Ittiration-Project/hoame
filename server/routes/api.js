@@ -189,16 +189,21 @@ router.get(
   }
 );
 
-// api.js
+
 router.post(
-  '/users/approve',
+  "/users/approve",
   sessionController.isAuthenticated,
-  roleController.checkPermissions(['admin']),
-  roleController.assignRole,
+  roleController.checkPermissions(["admin"]),
+  roleController.assignMultipleRoles, 
   (req, res) => {
-    res.status(200).json({ message: 'User approved and role assigned.' });
+    res.status(200).json({ message: "User approved and roles assigned." });
   }
 );
+
+// route to get all roles
+router.get('/roles', sessionController.isAuthenticated, roleController.getAllRoles, (req, res) => {
+  res.status(200).json(res.locals.roles);
+});
 
 // route for file upload.   --- Not in use
 // router.post(

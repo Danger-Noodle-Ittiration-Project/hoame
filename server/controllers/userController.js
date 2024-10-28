@@ -60,8 +60,8 @@ userController.signup = async (req, res, next) => {
     const userFirstName = newUser.rows[0].first_name;
 
     const roleQuery = `
-      INSERT INTO user_role (users_id, role_id)
-      VALUES ($1, (SELECT id FROM roles WHERE role_name = 'Pending_approval'))
+      INSERT INTO user_roles (users_id, role_id)
+      VALUES ($1, (SELECT id FROM roles WHERE role_name = 'pending_approval'))
     `;
     await db.query(roleQuery, [userId]);
 
@@ -171,15 +171,15 @@ userController.getUserId = async (req, res, next) => {
   }
 }
 
-// userController.js
+
 userController.getPendingApprovalUsers = async (req, res, next) => {
   try {
     const query = `
       SELECT u.*
       FROM users u
-      JOIN user_role ur ON u.id = ur.users_id
+      JOIN user_roles ur ON u.id = ur.users_id
       JOIN roles r ON ur.role_id = r.id
-      WHERE r.role_name = 'Pending_approval';
+      WHERE r.role_name = 'pending_approval';
     `;
     const result = await db.query(query);
     res.locals.pendingUsers = result.rows;

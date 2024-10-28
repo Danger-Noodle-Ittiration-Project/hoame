@@ -42,7 +42,7 @@ describe("User Signup", () => {
 
 // test admin can fetch users with pending_approval role 
 describe("Admin Fetch Pending Approval Users", () => {
-  test('should retrieve users with "Pending_approval" role', async () => {
+  test('should retrieve users with "pending_approval" role', async () => {
     // Mock the database response for users with the 'Pending_approval' role
     const mockQuery = jest.spyOn(db, "query").mockResolvedValueOnce({
       rows: [
