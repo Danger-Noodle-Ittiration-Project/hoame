@@ -7,6 +7,7 @@ const sessionController = require('../controllers/sessionController.js');
 const voteController = require('../controllers/voteController.js');
 //const roleController = require("./server/controllers/roleController");
 const roleController = require('../controllers/roleController');
+const duesController = require('../controllers/duesController.js');
 
 //require multer for /upload endpoint
 const multer = require('multer');
@@ -41,6 +42,7 @@ router.post(
   userController.login,
   sessionController.startSession, // start session after good login
   cookieController.setCookie, // set cookie after session creation
+  // duesController.checkStatus,
   (req, res) => {
     // console.log('RESLOCALSFIRSTNAME', res.locals.firstName); //- currently undefined
     res
@@ -128,16 +130,33 @@ router.delete(
 
 router.get(
   '/vote', 
+  userController.getUserId,
   voteController.getQuestions,
+  voteController.getVotes,
   (req, res) => {
-    return res.status(200).json(res.locals.questions);
+    return res.status(200).json({questions: res.locals.questions, votes: res.locals.votes, userId: res.locals.userId.rows[0].user_id,});
   }
 )
 
 router.patch(
-  '/vote/:questionID',
+  '/vote/answer',
+  userController.getUserId,
+  voteController.answerQuestions,
    (req, res) =>{
-    return res.status(200).json({});
+    return res.status(200).json(res.locals.questions);
+  }
+)
+
+//route to check dues_paid status
+router.get(
+  '/dues',
+  userController.getUserId,
+  // duesController.checkStatus,
+  (req, res) => {
+    
+    // return res.status(200).json({});
+    // return res.status(200).json(res.locals.status);
+    return res.status(200).json(res.locals.userId.rows[0].user_id);
   }
 )
 

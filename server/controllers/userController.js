@@ -147,6 +147,30 @@ userController.login = async (req, res, next) => {
   }
 };
 
+userController.getUserId = async (req, res, next) => {
+  try {
+    const { ssid } = req.cookies;
+
+    console.log('ssid from userController.getUserId', ssid);
+
+    const getUserIdFromSession = 'SELECT user_id FROM sessions WHERE id = $1';
+    const result = await db.query(getUserIdFromSession, [ssid]);
+
+    res.locals.userId = result;
+    // console.log('locals:', res.locals.userId.rows[0].user_id);
+    return next();
+  } catch (err) {
+    console.error('Error in userController.getUserId.js: ', err);
+    return next({
+      log: `Error in userController.getUserId ERROR:` + err,
+      status: 500,
+      message: {
+        err: 'An error occurred getting userId.',
+      },
+    })
+  }
+}
+
 // userController.js
 userController.getPendingApprovalUsers = async (req, res, next) => {
   try {
