@@ -148,7 +148,9 @@ userController.login = async (req, res, next) => {
 };
 
 userController.getUserId = async (req, res, next) => {
+  
   try {
+    console.log('cookies sent by test:', req.cookies);
     const { ssid } = req.cookies;
 
     console.log('ssid from userController.getUserId', ssid);

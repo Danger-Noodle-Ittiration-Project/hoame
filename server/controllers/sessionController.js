@@ -19,7 +19,7 @@ sessionController.startSession = async (req, res, next) => {
     }
     const { id } = res.locals.account[0]; // get id from user in database
     // check that user has id
-    if (!id) {
+    if (!id) {       
       return next({
         log: 'startSession',
         message: { err: 'User ID is missing from account' },
