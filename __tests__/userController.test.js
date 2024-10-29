@@ -2,7 +2,15 @@ const request = require("supertest");
 const app = require("../server/server");
 const db = require("../server/models/hoameModels");
 
+// // Mock sessionController.isAuthenticated
+// jest.mock('../controllers/sessionController', () => ({
+//   isAuthenticated: (req, res, next) => next(),
+// }));
 
+// // Mock roleController.checkPermissions
+// jest.mock('../controllers/roleController', () => ({
+//   checkPermissions: () => (req, res, next) => next(),
+// }));
 
 // test if signup assigns pending_approval;
 describe("User Signup", () => {
@@ -14,10 +22,8 @@ describe("User Signup", () => {
           id: 1,
           first_name: "John",
           last_name: "Doe",
-          street_address: "1234 Nonya Business",
-          phone: "8182772292",
           username: "johndoe",
-          password: "password",
+          
         },
       ],
     });
@@ -33,7 +39,7 @@ describe("User Signup", () => {
 
     expect(response.statusCode).toBe(201);
     expect(mockQuery).toHaveBeenCalledWith(
-      expect.stringContaining("INSERT INTO user_role"),
+      expect.stringContaining("INSERT INTO user_roles"),
       expect.any(Array)
     );
     mockQuery.mockRestore();
@@ -50,14 +56,21 @@ describe("Admin Fetch Pending Approval Users", () => {
           id: 1,
           first_name: "John",
           last_name: "Doe",
-          street_address: "1234 Nonya Business",
-          phone: "8182772292",
           username: "johndoe",
-          password: "password",
+        
         },
       ],
     });
 
+    //  {
+    //       id: 1,
+    //       first_name: "John",
+    //       last_name: "Doe",
+    //       street_address: "1234 Nonya Business",
+    //       phone: "8182772292",
+    //       username: "johndoe",
+    //       password: "password",
+    //     },
     const response = await request(app)
       .get("/api/users/pending-approval")
      
@@ -91,12 +104,12 @@ describe('Admin Assign Role and Approve User', () => {
     expect(response.statusCode).toBe(200);
     // First delete the "Pending_approval" role
     expect(mockQuery).toHaveBeenCalledWith(
-      expect.stringContaining('DELETE FROM user_role'),
+      expect.stringContaining('DELETE FROM user_roles'),
       [1]
     );
         // second query insert different role
     expect(mockQuery).toHaveBeenCalledWith(
-      expect.stringContaining('INSERT INTO user_role'),
+      expect.stringContaining('INSERT INTO user_roles'),
       [1, 2]
     );
     mockQuery.mockRestore();
