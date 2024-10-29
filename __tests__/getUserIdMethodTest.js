@@ -22,6 +22,9 @@ describe('Route integration', () => {
           .expect(200)
       })
       it(`should get the user ID from the user's session`, () => {
+
+        
+
         return request(server)
         .get('/api/dues')
         .expect((res) => {

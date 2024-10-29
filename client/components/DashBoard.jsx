@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-import Announcements from './Announcements';
-import Directory from './Directory';
-import Documents from './Documents';
-import Bids from './Bids';
-import Dues from './Dues';
-import VotingBoard from './VotingBoard'
-import Logout from './Logout';
-import home from '../styles/assets/png_h5pgb.png';
+import Announcements from "./Announcements";
+import Directory from "./Directory";
+import Documents from "./Documents";
+import Bids from "./Bids";
+import Dues from "./Dues";
+import VotingBoard from "./VotingBoard";
+import Logout from "./Logout";
+import home from "../styles/assets/png_h5pgb.png";
 import RoleReassigner from "./RoleReassigner";
 /*
   Componet serves as the main UI where users can go to differnt sections
@@ -18,11 +18,26 @@ import RoleReassigner from "./RoleReassigner";
 
 const Dashboard = ({ onLogout }) => {
   const location = useLocation();
-  const firstName = location.state?.prop || 'Guest';
-  console.log('firstName:',firstName)
-  // console.log("FIRSTNAME", firstName)
-  // state to track current active tab, default is announcements
-  const [activeTab, setActiveTab] = useState('Announcements');
+
+  // old way to set name
+  // const firstName = location.state?.prop || 'Guest';
+  // console.log('firstName:',firstName)
+  // // console.log("FIRSTNAME", firstName)
+  // // state to track current active tab, default is announcements
+  // const [activeTab, setActiveTab] = useState('Announcements');
+
+  const [activeTab, setActiveTab] = useState("Announcements");
+  const [firstName, setFirstName] = useState("Guest");
+
+  useEffect(() => {
+    if (location.state?.prop) {
+      localStorage.setItem("firstName", location.state.prop);
+    }
+    const storedName = localStorage.getItem("firstName");
+    if (storedName) {
+      setFirstName(storedName);
+    }
+  }, [location.state]);
 
   // function to handle tab swtiching when button clicked
   const handleClick = (e) => {

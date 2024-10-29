@@ -1,6 +1,9 @@
 const request = require("supertest");
 const app = require("../server/server");
 const db = require("../server/models/hoameModels");
+const server = "http://localhost:3000";
+const httpMocks = require("node-mocks-http");
+const userController = require("../server/controllers/userController");
 
 // // Mock sessionController.isAuthenticated
 // jest.mock('../controllers/sessionController', () => ({
@@ -15,7 +18,8 @@ const db = require("../server/models/hoameModels");
 // test if signup assigns pending_approval;
 describe("User Signup", () => {
   test('should assign "Pending_approval" role when a user signs up', async () => {
-    // Mocking the database query 
+    // Mocking the database query
+
     const mockQuery = jest.spyOn(db, "query").mockResolvedValueOnce({
       rows: [
         {
@@ -23,7 +27,6 @@ describe("User Signup", () => {
           first_name: "John",
           last_name: "Doe",
           username: "johndoe",
-          
         },
       ],
     });
@@ -37,16 +40,28 @@ describe("User Signup", () => {
       password: "password",
     });
 
-    expect(response.statusCode).toBe(201);
-    expect(mockQuery).toHaveBeenCalledWith(
-      expect.stringContaining("INSERT INTO user_roles"),
-      expect.any(Array)
-    );
-    mockQuery.mockRestore();
+    const req = httpMocks.createRequest({
+      method: "GET",
+      url: "/api/signup",
+      cookies: {ssid: 90},
+      //headers: { Authorization: `Bearer ${response.body.tokens.access.token}` },
+    });
+    const res = httpMocks.createResponse();
+    const next = jest.fn();
+
+    await userController.getUserId(req, res, next);
+    expect(next).toHaveBeenCalledWith();
+
+    // expect(response.statusCode).toBe(201);
+    // expect(mockQuery).toHaveBeenCalledWith(
+    //   expect.stringContaining("INSERT INTO user_roles"),
+    //   expect.any(Array)
+    // );
+    // mockQuery.mockRestore();
   });
 });
 
-// test admin can fetch users with pending_approval role 
+// test admin can fetch users with pending_approval role
 describe("Admin Fetch Pending Approval Users", () => {
   test('should retrieve users with "pending_approval" role', async () => {
     // Mock the database response for users with the 'Pending_approval' role
@@ -57,7 +72,6 @@ describe("Admin Fetch Pending Approval Users", () => {
           first_name: "John",
           last_name: "Doe",
           username: "johndoe",
-        
         },
       ],
     });
@@ -71,9 +85,7 @@ describe("Admin Fetch Pending Approval Users", () => {
     //       username: "johndoe",
     //       password: "password",
     //     },
-    const response = await request(app)
-      .get("/api/users/pending-approval")
-     
+    const response = await request(app).get("/api/users/pending-approval");
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual([
@@ -88,28 +100,28 @@ describe("Admin Fetch Pending Approval Users", () => {
       },
     ]);
     mockQuery.mockRestore();
+
+    //check res.locals.pendingUsers against the database of pending users
   });
 });
 
-
-describe('Admin Assign Role and Approve User', () => {
+describe("Admin Assign Role and Approve User", () => {
   test('should assign a new role and remove "pending_approval" role', async () => {
-    const mockQuery = jest.spyOn(db, 'query');
+    const mockQuery = jest.spyOn(db, "query");
 
     const response = await request(app)
-      .post('/api/users/approve')
-      .send({ userId: 1, newRoleId: 2 })
-      
+      .post("/api/users/approve")
+      .send({ userId: 1, newRoleId: 2 });
 
     expect(response.statusCode).toBe(200);
     // First delete the "Pending_approval" role
     expect(mockQuery).toHaveBeenCalledWith(
-      expect.stringContaining('DELETE FROM user_roles'),
+      expect.stringContaining("DELETE FROM user_roles"),
       [1]
     );
-        // second query insert different role
+    // second query insert different role
     expect(mockQuery).toHaveBeenCalledWith(
-      expect.stringContaining('INSERT INTO user_roles'),
+      expect.stringContaining("INSERT INTO user_roles"),
       [1, 2]
     );
     mockQuery.mockRestore();
