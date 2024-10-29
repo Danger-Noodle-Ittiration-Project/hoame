@@ -44,6 +44,7 @@ const CheckoutForm = ({ onPaymentComplete }) => {
     });
 
     const session = await res.json();
+    console.log('session', session.id)
 
     const result = stripe.redirectToCheckout({
       sessionId: session.id

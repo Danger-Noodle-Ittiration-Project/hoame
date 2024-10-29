@@ -211,8 +211,9 @@ router.post('/create-payment-intent', async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: "http://localhost:8080/dashboard"
+      success_url: "http://localhost:8080/dashboard",
     })
+
     return res.json({ id: session.id })
   } catch (err) {
     console.log(err);
