@@ -171,19 +171,50 @@ router.patch(
 )
 
 //stripe payment
+// router.post('/create-payment-intent', async (req, res) => {
+//   try {
+//     const {amount} = req.body;
+  
+//     const paymentIntent = await stripe.paymentIntents.create({
+//       amount: amount,
+//       currency: 'usd',
+//       automatic_payment_methods: {
+//         enabled: true,
+//       },
+//     })
+
+//     return res.json({ client_secret: paymentIntent.client_secret });
+//   } catch (err) {
+//     console.log(err);
+//   }
+// })
+
+//stripe payment v3
 router.post('/create-payment-intent', async (req, res) => {
   try {
-    const {amount} = req.body;
+    const { amount } = req.body;
+
+    const lineItems = [
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "Payment",
+          },
+          unit_amount: amount,
+        },
+        quantity: 1,
+      }
+    ];
   
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: amount,
-      currency: 'usd',
-      automatic_payment_methods: {
-        enabled: true,
-      },
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: lineItems,
+      mode: "payment",
+      success_url: "http://localhost:8080/dashboard",
     })
 
-    return res.json({ client_secret: paymentIntent.client_secret });
+    return res.json({ id: session.id })
   } catch (err) {
     console.log(err);
   }
