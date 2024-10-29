@@ -9,6 +9,7 @@ import Dues from './Dues';
 import VotingBoard from './VotingBoard'
 import Logout from './Logout';
 import home from '../styles/assets/png_h5pgb.png';
+import RoleReassigner from "./RoleReassigner";
 /*
   Componet serves as the main UI where users can go to differnt sections
   using tabs, it displays state and includes a logout function
@@ -52,11 +53,12 @@ const Dashboard = ({ onLogout }) => {
   // };
 
   return (
-    <div className='dashboard'>
+    <div className="dashboard">
       <header>
-        <div className='welcomeBlock'>
-          <h1 className='pageTitle' id='welcome'>
-            <img src={home} alt='home' className='homeIcon' /> Welcome HOAme, {firstName}!
+        <div className="welcomeBlock">
+          <h1 className="pageTitle" id="welcome">
+            <img src={home} alt="home" className="homeIcon" /> Welcome HOAme,{" "}
+            {firstName}!
           </h1>
         </div>
         {/* <button onClick={handleLogout}>Sign Out</button> */}
@@ -64,37 +66,41 @@ const Dashboard = ({ onLogout }) => {
       </header>
 
       {/* Button to swtich to announcements tabs */}
-      <nav className='navigation'>
-        <button className='tab' onClick={handleClick}>
+      <nav className="navigation">
+        <button className="tab" onClick={handleClick}>
           Announcements
         </button>
         {/* Dropdown menu for differnt tabs */}
-        <select onChange={handleOptions} className='select'>
-          <option value='Announcement'>Select Tab</option>
-          <option value='Documents'>Documents</option>
+        <select onChange={handleOptions} className="select">
+          <option value="Announcement">Select Tab</option>
+          <option value="Documents">Documents</option>
           {/* <option value='MeetingMinutes'>Meeting Minutes</option> */}
-          <option value='Bids'>Upload Documents</option>
+          <option value="Bids">Upload Documents</option>
         </select>
         {/* Button to directory tab */}
-        <button onClick={handleClick} className='tab'>
+        <button onClick={handleClick} className="tab">
           Directory
         </button>
-        <button onClick={handleClick} className='tab'>
+        <button onClick={handleClick} className="tab">
           Dues
         </button>
-        <button onClick={handleClick} className='tab'>
+        <button onClick={handleClick} className="tab">
           VotingBoard
+        </button>
+        <button onClick={handleClick} className="tab">
+          Role Reassigner
         </button>
       </nav>
 
       {/* Render componets based on the active tab*/}
-      <div className='window'>
-        {activeTab === 'Announcements' && <Announcements />}
-        {activeTab === 'Documents' && <Documents />}
-        {activeTab === 'Directory' && <Directory />}
-        {activeTab === 'Bids' && <Bids />}
-        {activeTab === 'Dues' && <Dues />}
-        {activeTab === 'VotingBoard' && <VotingBoard />}
+      <div className="window">
+        {activeTab === "Announcements" && <Announcements />}
+        {activeTab === "Documents" && <Documents />}
+        {activeTab === "Directory" && <Directory />}
+        {activeTab === "Bids" && <Bids />}
+        {activeTab === "Dues" && <Dues />}
+        {activeTab === "VotingBoard" && <VotingBoard />}
+        {activeTab === "Role Reassigner" && <RoleReassigner />}
       </div>
     </div>
   );
