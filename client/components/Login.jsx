@@ -96,6 +96,7 @@ const Login = ({ onLogin }) => {
             Login with Google{' '}
           </button>
           <p>
+            {/* link for signing up for an account */}
             Don't have an account? <Link to='/signup'>Sign Up</Link>
           </p>
         </div>

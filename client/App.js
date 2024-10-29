@@ -23,23 +23,30 @@ const App = () => {
     <Routes>
       {/*if logged in then redirect to dashboard, else redirect to login */}
       <Route
-        path='/'
+        path="/"
         element={
-          isLoggedIn ? <Navigate to='/dashboard' /> : <Navigate to='/login' />
+          isLoggedIn ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
         }
       />
 
       {/* define login route */}
-      <Route path='/login' element={<Login onLogin={setIsLoggedIn} />} />
+      <Route path="/login" element={<Login onLogin={setIsLoggedIn} />} />
       {/* Define signup route */}
-      <Route path='/signup' element={<SignUp onSignUp={handleSignUp} />} />
+      <Route path="/signup" element={<SignUp onSignUp={handleSignUp} />} />
       {/* define dashboard route, and logout handling */}
-      <Route
-        path='/dashboard'
-        element={<Dashboard onLogout={handleLogout} />}
+      <Route path="/dashboard" element={<Dashboard onLogout={handleLogout} />}
       />
     </Routes>
   );
 };
 
 export default App;
+
+// // Can only access /dashboard only if logged in
+// element={
+//   isLoggedIn ? (
+//     <Dashboard onLogout={handleLogout} />
+//   ) : (
+//     <Navigate to="/login" />
+//   )
+// }\
