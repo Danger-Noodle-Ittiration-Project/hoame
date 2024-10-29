@@ -7,13 +7,13 @@ const VotingCard = (props) => {
   }
 
   const adminView = <div>
-    <p>Yes: {props.yesVotes}</p> 
-    <p>No: {props.noVotes}</p>
+    <p>Yes: {(props.yesVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1)).toFixed(1)}%</p> 
+    <p>No: {(props.noVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1)).toFixed(1)}%</p>
   </div>
   
 
   return (
-    <div>
+    <div className='questionCard'>
       <h2>{props.title}</h2>
       {props.description}
 
