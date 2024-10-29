@@ -50,32 +50,7 @@ const Bids = () => {
     }
   };
 
-  /*
-Different approach with a reset of form fields
-*/
-  //     try {
-  //       // POST request tobackend with form data
-  //       const response = await fetch('http://localhost:3000/api/bids', {
-  //           method: 'POST',
-  //           body: formData,
-  //       });
-
-  //       if (response.ok) {
-  //           // reset form fields
-  //           setTitle('');
-  //           setDescription('');
-  //           setAmount('');
-  //           setFile(null);
-  //       } else {
-  //           // if the response fails set error message
-  //           setError('Failed to submit bid. Please try again.');
-  //       }
-  //   } catch (error) {
-  //       // set error state message to display to user
-  //       setError('An error occurred while submitting the bid. Please try again later.');
-  //   }
-  // }
-
+  
   return (
     <div>
       {isUploaded ? (
@@ -92,25 +67,25 @@ Different approach with a reset of form fields
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
-              />
+                />
             </div>
             {/* <div>
               <label>Description:</label>
               <textarea
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                required
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
               />
-            </div> */}
+              </div> */}
             {/* <div>
               <label>Amount:</label>
               <input
-                type='number'
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                required
+              type='number'
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              required
               />
-            </div> */}
+              </div> */}
             <div className='uploadDoc'>
               <label>Select Document </label>
               <input
@@ -120,13 +95,13 @@ Different approach with a reset of form fields
                 // accept='application/*, image/*'  // * wildcard didn't work - BMA
                 accept='.pdf, .doc, .docx, .xls, .xlsx, image/*' // changed from application/* to specific file types
                 required
-              />
+                />
             </div>
             <button
               onClick={handleFileSubmit}
               type='submit'
               className='viewButton'
-            >
+              >
               Submit Document
             </button>
           </form>
@@ -140,52 +115,79 @@ Potential code for an approach with multer
 */
 
 // return (
-//   <div>
-//     <h1>Submit a Bid/Quote</h1>
-//     <form onSubmit={handleSubmit} encType="multipart/form-data">
-//       <div>
-//         <label>Title:</label>
-//         {/* when input changes, use setTitle to update state */}
-//         <input
-//           type="text"
-//           value={title}
-//           onChange={(e) => setTitle(e.target.value)}
-//           required
-//         />
-//       </div>
-
-//       <div>
-//         <label>Description:</label>
-//         <textarea
-//           value={description}
-//           onChange={(e) => setDescription(e.target.value)}
-//           required
-//         />
-//       </div>
-
-//       <div>
-//         <label>Amount:</label>
-//         <input
-//           type="number"
-//           value={amount}
-//           onChange={(e) => setAmount(e.target.value)}
-//           required
-//         />
-//       </div>
-
-//       <div>
-//         <label>Upload Quote (Any File Type):</label>
-//         <input
-//         type="file"
-//         name="file"
-//         onChange={handleFileUpload}
-//         required
-//       />
-//       </div>
-
-//       <button type="submit">Submit Bid</button>
-//     </form>
-//   </div>
-// );
-
-export default Bids;
+  //   <div>
+  //     <h1>Submit a Bid/Quote</h1>
+  //     <form onSubmit={handleSubmit} encType="multipart/form-data">
+  //       <div>
+  //         <label>Title:</label>
+  //         {/* when input changes, use setTitle to update state */}
+  //         <input
+  //           type="text"
+  //           value={title}
+  //           onChange={(e) => setTitle(e.target.value)}
+  //           required
+  //         />
+  //       </div>
+  
+  //       <div>
+  //         <label>Description:</label>
+  //         <textarea
+  //           value={description}
+  //           onChange={(e) => setDescription(e.target.value)}
+  //           required
+  //         />
+  //       </div>
+  
+  //       <div>
+  //         <label>Amount:</label>
+  //         <input
+  //           type="number"
+  //           value={amount}
+  //           onChange={(e) => setAmount(e.target.value)}
+  //           required
+  //         />
+  //       </div>
+  
+  //       <div>
+  //         <label>Upload Quote (Any File Type):</label>
+  //         <input
+  //         type="file"
+  //         name="file"
+  //         onChange={handleFileUpload}
+  //         required
+  //       />
+  //       </div>
+  
+  //       <button type="submit">Submit Bid</button>
+  //     </form>
+  //   </div>
+  // );
+  
+  /*
+  Different approach with a reset of form fields
+  */
+  //     try {
+  //       // POST request tobackend with form data
+  //       const response = await fetch('http://localhost:3000/api/bids', {
+  //           method: 'POST',
+  //           body: formData,
+  //       });
+  
+  //       if (response.ok) {
+  //           // reset form fields
+  //           setTitle('');
+  //           setDescription('');
+  //           setAmount('');
+  //           setFile(null);
+  //       } else {
+  //           // if the response fails set error message
+  //           setError('Failed to submit bid. Please try again.');
+  //       }
+  //   } catch (error) {
+  //       // set error state message to display to user
+  //       setError('An error occurred while submitting the bid. Please try again later.');
+  //   }
+  // }
+  
+  export default Bids;
+  

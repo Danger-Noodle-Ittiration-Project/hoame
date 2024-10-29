@@ -7,7 +7,8 @@ import './styles/announcements.scss';
 import './styles/login.scss';
 import './styles/dashboard.scss';
 import './styles/documents.scss';
-import './styles/dues.scss';
+import './styles/checkoutform.scss';
+import './styles/signup.scss'
 
 // get root where it will be render
 const root = createRoot(document.getElementById('root'));

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Buffer } from 'buffer';
 
 /*
-  Allow users to upload, view , and list documents in db
+  Lists all documents and can click to view
 */
 const Documents = () => {
   // state variables
@@ -60,22 +60,6 @@ const Documents = () => {
         return 'application/octet-stream'; // Default for unknown types
     }
   };
-  // const viewDocuments = async (doc) => {
-  //   console.log('CLICKED VIEW DOCS', doc.filename);
-
-  //   // Convert the data to a Buffer using the polyfill
-  //   const buffer = Buffer.from(doc.file_data.data);
-
-  //   // Convert the buffer to a Base64 string
-  //   const base64Data = buffer.toString('base64');
-  //   const mimeType = getMimeType(doc.filename) // Adjust based on the file type
-
-  //   // Create a data URL
-  //   const dataUrl = `data:${mimeType};base64,${base64Data}`;
-
-  //   // Open the document in a new tab
-  //   await window.open(dataUrl, '_blank');
-  // };
 
   // function to load documents from the db
   const loadDocuments = async () => {
@@ -114,8 +98,8 @@ const Documents = () => {
   return (
     <div>
       <h2>Documents HOAme</h2>
-      {/* {display the list of document or message if no documents} */}
-      {documents.length > 0 ? documents : <p>Fetching Documents...</p>}
+      {/* {display the list of document after fetching} */}
+      {documents.length > 0 ? documents : <p>Fetching Documents....</p>}
     </div>
   );
 };

@@ -11,7 +11,7 @@ import SignUp from './components/SignUp';
 const App = () => {
   // state to track user logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  
   // function to handle logout and update state
   const handleLogout = () => {
     setIsLoggedIn(false); // This will handle updating the state to reflect logged out status
@@ -27,7 +27,7 @@ const App = () => {
         element={
           isLoggedIn ? <Navigate to="/dashboard" /> : <Navigate to="/login" />
         }
-      />
+        />
 
       {/* define login route */}
       <Route path="/login" element={<Login onLogin={setIsLoggedIn} />} />
@@ -42,11 +42,14 @@ const App = () => {
 
 export default App;
 
-// // Can only access /dashboard only if logged in
-// element={
-//   isLoggedIn ? (
-//     <Dashboard onLogout={handleLogout} />
-//   ) : (
-//     <Navigate to="/login" />
-//   )
-// }\
+//Tried using the following to save isLoggedIn state to local storage, but still reloading page when any change is made
+//Either need to check more into how routing is working or it's the hot module reload feature of webpack
+// const [isLoggedIn, setIsLoggedIn] = useState(() => {
+//   return JSON.parse(localStorage.getItem('isLoggedIn')) || false;
+// });
+// useEffect(() => {
+//   localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
+// }, [isLoggedIn])
+
+// Tried using below so /dashboard can only be accessed if logged in, but any updates navigate to login page and have to login again
+{/* <Route path='/dashboard' element={isLoggedIn ? (<Dashboard onLogout={handleLogout} />) : (<Navigate to='/login' />)} */}

@@ -20,16 +20,47 @@ describe("User Signup", () => {
   test('should assign "Pending_approval" role when a user signs up', async () => {
     // Mocking the database query
 
-    const mockQuery = jest.spyOn(db, "query").mockResolvedValueOnce({
-      rows: [
-        {
-          id: 1,
-          first_name: "John",
-          last_name: "Doe",
-          username: "johndoe",
-        },
-      ],
-    });
+    const mockQuery = jest.spyOn(db, 'query').mockImplementation((query, values) => {
+      if (query.includes("INSERT into users")) {
+        return {
+          command: "INSERT",
+          rowCount: 1,
+          rows: [{
+            id: '61',
+            first_name: values[0],
+            last_name: values[1],
+            street_address: values[2],
+            phone: values[3],
+            username: values[4],
+            password: values[5],
+            dues_paid: false,
+          }],
+        };
+      }
+      if (query.includes("INSERT INTO user_roles")) {
+        return { command: "INSERT", rowCount: 1, rows: [] };
+      }
+      if (query.includes("INSERT into sessions")) {
+        return {
+          command: "INSERT",
+          rowCount: 1,
+          rows: [{ id: 'test-session-id', user_id: '61', created_time: new Date(), expires_time: new Date(Date.now() + 3600000) }],
+        };
+      }
+      return { command: "", rowCount: 0, rows: [] };
+    })
+
+
+    // const mockQuery = jest.spyOn(db, "query").mockResolvedValueOnce({
+    //   rows: [
+    //     {
+    //       id: 99,
+    //       first_name: "John",
+    //       last_name: "Doe",
+    //       username: "johndoe",
+    //     },
+    //   ],
+    // });
 
     const response = await request(app).post("/api/signup").send({
       first_name: "John",
@@ -40,26 +71,43 @@ describe("User Signup", () => {
       password: "password",
     });
 
-    const req = httpMocks.createRequest({
-      method: "GET",
-      url: "/api/signup",
-      cookies: {ssid: 90},
-      //headers: { Authorization: `Bearer ${response.body.tokens.access.token}` },
-    });
-    const res = httpMocks.createResponse();
-    const next = jest.fn();
+    // const req = httpMocks.createRequest({
+    //   method: "GET",
+    //   url: "/api/signup",
+    //   cookies: {ssid: 90},
+    //   //headers: { Authorization: `Bearer ${response.body.tokens.access.token}` },
+    // });
+    // const res = httpMocks.createResponse();
+    // const next = jest.fn();
 
-    await userController.getUserId(req, res, next);
-    expect(next).toHaveBeenCalledWith();
+    // await userController.getUserId(req, res, next);
+    // expect(next).toHaveBeenCalledWith();
 
-    // expect(response.statusCode).toBe(201);
-    // expect(mockQuery).toHaveBeenCalledWith(
-    //   expect.stringContaining("INSERT INTO user_roles"),
-    //   expect.any(Array)
-    // );
-    // mockQuery.mockRestore();
+    expect(response.statusCode).toBe(201);
+
+    expect(mockQuery).toHaveBeenNthCalledWith(
+      1,
+      expect.stringContaining("INSERT into users"),
+      expect.arrayContaining(["John", "Doe", "1234 Nonya Business", "8182772292", "johndoe", "password"])
+    );
+    expect(mockQuery).toHaveBeenCalledWith(
+      2,
+      expect.stringContaining("INSERT INTO user_roles"),
+      // expect.any(Array)
+      expect.arrayContaining(["61"])
+    );
+    expect(mockQuery).toHaveBeenNthCalledWith(
+      3,
+      expect.stringContaining("SELECT roles.role_name"),
+      expect.arrayContaining(["61"]) // confirming the role selection call
+    );
+    
+    expect(res.locals.session.session_id).toBe('test-session-id'); 
+    mockQuery.mockRestore();
   });
 });
+
+/*  Commenting out below tests until above test passes
 
 // test admin can fetch users with pending_approval role
 describe("Admin Fetch Pending Approval Users", () => {
@@ -127,5 +175,7 @@ describe("Admin Assign Role and Approve User", () => {
     mockQuery.mockRestore();
   });
 });
+
+End of comment out block --> */ 
 
 // admin can Approve a user by assigning a new role

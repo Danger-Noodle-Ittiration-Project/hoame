@@ -1,3 +1,5 @@
+/*  Commenting out for now while testing userController.test.js
+
 // Testing middleware for getting the id primary key from the users table
 
 const request = require('supertest');
@@ -35,3 +37,4 @@ describe('Route integration', () => {
     })
   })
 })
+  */

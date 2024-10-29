@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = ({ onSignUp }) => {
+  // state for whether user completed signup or not
+  const [isSignedUp, setIsSignedUp] = useState(false);
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -37,8 +39,11 @@ const SignUp = ({ onSignUp }) => {
 
       if (response.ok) {
         console.log('Signup successful:', data);
-        onSignUp(); // Update the logged-in state to true
-        navigate('/dashboard', { state: { prop: formData.first_name } }); // Pass first_name to Dashboard
+        // Set isSigneUp to True so page can render post-signup message
+        setIsSignedUp(true);
+        // Don't want users able to get to dashboard until admin approves their signup request
+        // onSignUp(); // Update the logged-in state to true
+        // navigate('/dashboard', { state: { prop: formData.first_name } }); // Pass first_name to Dashboard
       } else {
         console.error('Signup error:', data.message.err);
         alert('Signup failed. Please try again.');
@@ -51,7 +56,11 @@ const SignUp = ({ onSignUp }) => {
 
   return (
     <div>
-      <h2>Sign Up</h2>
+      {isSignedUp ? (<h1 className='center-text'> Signup request received!  The Board Secretary will approve access after reviewing.</h1>) : (
+        <>
+      <h2
+      //  className='center-text'
+      >Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor='first_name'>First Name:</label>
@@ -115,6 +124,8 @@ const SignUp = ({ onSignUp }) => {
         </div>
         <button type='submit'>Sign Up</button>
       </form>
+      </>
+      )}
     </div>
   );
 };

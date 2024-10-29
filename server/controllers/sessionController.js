@@ -26,7 +26,7 @@ sessionController.startSession = async (req, res, next) => {
       });
     }
     console.log(
-      'Extracting id from res locals account',
+      'sessionController.startSession - Extracting id from res.locals.account: ',
       res.locals.account[0],
       id
     );
@@ -43,7 +43,7 @@ sessionController.startSession = async (req, res, next) => {
       createdAT,
       expirationTime,
     ]);
-    console.log('SESSION CREATED', session.rows);
+    console.log('sessionController.startSession - Session created - session.rows = ', session.rows);
 
     res.locals.session = session.rows[0];
     return next();
