@@ -91,7 +91,8 @@ const viewDocuments = async (doc) => {
     const dataUrl = `data:${mimeType};base64,${base64Data}`;
 
     // Open the document in a new tab
-    window.open(dataUrl, '_blank');
+    //window.open(dataUrl, '_blank');
+    window.open().document.write('<iframe src="' + dataUrl  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
   } catch (error) {
     console.error('Error opening document:', error);
   }
@@ -104,6 +105,7 @@ const getMimeType = (filename) => {
     case 'pdf':
       return 'application/pdf';
     case 'jpg':
+      return 'image/jpeg';
     case 'jpeg':
       return 'image/jpeg';
     case 'png':
