@@ -47,7 +47,7 @@ userController.signup = async (req, res, next) => {
       username,
       password,
     ]);
-
+    console.log("Real db.query() output:", newUser);
     // Check if newUser.rows is populated
     if (!newUser.rows.length) {
       return next({
@@ -63,11 +63,17 @@ userController.signup = async (req, res, next) => {
       INSERT INTO user_roles (users_id, role_id)
       VALUES ($1, (SELECT id FROM roles WHERE role_name = 'pending_approval'))
     `;
-    await db.query(roleQuery, [userId]);
+    try{
+      await db.query(roleQuery, [userId]);
+    } catch {
+      console.error('Error assigning role:', err);
+      throw err;
+    }
+    
 
-    // Optionally, fetch roles if you want them available right after signup
+    
     const roles = await roleController.getUserRoles(userId); // Fetch roles for the new user
-
+ 
     // Set user info (including roles) in session
     req.session.user = {
       id: userId,
