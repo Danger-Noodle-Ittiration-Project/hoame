@@ -40,26 +40,18 @@ header {
   width: 300px;
   cursor: pointer; /* Pointer cursor for buttons */
   border-radius: 20px; /* Optional: Round the button edges */
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .tab:hover {
   background-color: $fourth-color;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-.select {
-  padding: 1.5em;
-  border: none;
-  background-color: $tertiary-color;
-  color: white;
-  border-radius: 20px;
-  cursor: pointer;
-  width: 200px;
-  text-align: center;
-
-  &:hover {
-    background-color: $fourth-color;
-    transition: background-color 0.3s ease;
-
-  }
+.tab.active {
+  background-color: $fourth-color;
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 #welcome.pageTitle {
@@ -96,4 +88,21 @@ img {
 .welcomeBlock {
   padding-top: 20px;
   width: 100%;
+}
+.select {
+  padding: 1.5em;
+  border: none;
+  background-color: $tertiary-color; /* Primary color */
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 200px;
+  text-align: center;
+  transition: background-color 0.4s ease, transform 0.4s ease;
+}
+.select:hover,
+.select:focus {
+  background-color: $fourth-color; /* Highlight color on hover */
+  transform: translateY(-5px); /* Lift effect */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
 }

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
-import Announcements from "./Announcements";
-import Directory from "./Directory";
-import Documents from "./Documents";
-import Bids from "./Bids";
-import Dues from "./Dues";
-import VotingBoard from "./VotingBoard";
-import Logout from "./Logout";
-import home from "../styles/assets/png_blue_icon.png";
-import RoleReassigner from "./RoleReassigner";
+import Announcements from './Announcements';
+import Directory from './Directory';
+import Documents from './Documents';
+import Bids from './Bids';
+import Dues from './Dues';
+import VotingBoard from './VotingBoard';
+import Logout from './Logout';
+import home from '../styles/assets/png_blue_icon.png';
+import RoleReassigner from './RoleReassigner';
 /*
   Componet serves as the main UI where users can go to differnt sections
   using tabs, it displays state and includes a logout function
@@ -26,14 +26,14 @@ const Dashboard = ({ onLogout }) => {
   // // state to track current active tab, default is announcements
   // const [activeTab, setActiveTab] = useState('Announcements');
 
-  const [activeTab, setActiveTab] = useState("Announcements");
-  const [firstName, setFirstName] = useState("Guest");
+  const [activeTab, setActiveTab] = useState('Announcements');
+  const [firstName, setFirstName] = useState('Guest');
 
   useEffect(() => {
     if (location.state?.prop) {
-      localStorage.setItem("firstName", location.state.prop);
+      localStorage.setItem('firstName', location.state.prop);
     }
-    const storedName = localStorage.getItem("firstName");
+    const storedName = localStorage.getItem('firstName');
     if (storedName) {
       setFirstName(storedName);
     }
@@ -68,11 +68,11 @@ const Dashboard = ({ onLogout }) => {
   // };
 
   return (
-    <div className="dashboard">
+    <div className='dashboard'>
       <header>
-        <div className="welcomeBlock">
-          <h1 className="pageTitle" id="welcome">
-            <img src={home} alt="home" className="homeIcon" /> Welcome HOAme,{" "}
+        <div className='welcomeBlock'>
+          <h1 className='pageTitle' id='welcome'>
+            <img src={home} alt='home' className='homeIcon' /> Welcome HOAme,{' '}
             {firstName}!
           </h1>
         </div>
@@ -81,41 +81,58 @@ const Dashboard = ({ onLogout }) => {
       </header>
 
       {/* Button to swtich to announcements tabs */}
-      <nav className="navigation">
-        <button className="tab" onClick={handleClick}>
+      <nav className='navigation'>
+        <button
+          className={`tab ${activeTab === 'Announcements' ? 'active' : ''}`}
+          onClick={handleClick}
+        >
           Announcements
         </button>
         {/* Dropdown menu for differnt tabs */}
-        <select onChange={handleOptions} className="select">
-          <option value="Announcement">Select Tab</option>
-          <option value="Documents">Documents</option>
+        <select onChange={handleOptions} className='select'>
+          <option value='' disabled selected>
+            Select Tab
+          </option>
+          <option value='Documents'>Documents</option>
           {/* <option value='MeetingMinutes'>Meeting Minutes</option> */}
-          <option value="Bids">Upload Documents</option>
+          <option value='Bids'>Upload Documents</option>
         </select>
         {/* Button to directory tab */}
-        <button onClick={handleClick} className="tab">
+        <button
+          className={`tab ${activeTab === 'Directory' ? 'active' : ''}`}
+          onClick={handleClick}
+        >
           Directory
         </button>
-        <button onClick={handleClick} className="tab">
+        <button
+          className={`tab ${activeTab === 'Dues' ? 'active' : ''}`}
+          onClick={handleClick}
+        >
           Dues
         </button>
-        <button onClick={handleClick} className="tab">
+        <button
+          className={`tab ${activeTab === 'VotingBoard' ? 'active' : ''}`}
+          onClick={handleClick}
+        >
           VotingBoard
         </button>
-        <button onClick={handleClick} className="tab">
+        <button
+          className={`tab ${activeTab === 'Role Reassigner' ? 'active' : ''}`}
+          onClick={handleClick}
+        >
           Role Reassigner
         </button>
       </nav>
 
       {/* Render componets based on the active tab*/}
-      <div className="window">
-        {activeTab === "Announcements" && <Announcements />}
-        {activeTab === "Documents" && <Documents />}
-        {activeTab === "Directory" && <Directory />}
-        {activeTab === "Bids" && <Bids />}
-        {activeTab === "Dues" && <Dues />}
-        {activeTab === "VotingBoard" && <VotingBoard />}
-        {activeTab === "Role Reassigner" && <RoleReassigner />}
+      <div className='window'>
+        {activeTab === 'Announcements' && <Announcements />}
+        {activeTab === 'Documents' && <Documents />}
+        {activeTab === 'Directory' && <Directory />}
+        {activeTab === 'Bids' && <Bids />}
+        {activeTab === 'Dues' && <Dues />}
+        {activeTab === 'VotingBoard' && <VotingBoard />}
+        {activeTab === 'Role Reassigner' && <RoleReassigner />}
       </div>
     </div>
   );
