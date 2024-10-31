@@ -6,9 +6,16 @@ const VotingCard = (props) => {
     props.func(event.target.value, props.id)
   }
 
-  const adminView = <div>
-    <p>Yes: {(props.yesVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1)).toFixed(1)}%</p> 
+  const adminView = 
+  <div>
+    <p >Yes: {(props.yesVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1)).toFixed(1)}%</p> 
+    <div className='progressBar'>
+      <div style={{ width: `${(props.yesVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1))}px`}}></div>
+    </div>
     <p>No: {(props.noVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1)).toFixed(1)}%</p>
+    <div className='progressBar'>
+      <div style={{ width: `${(props.noVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1))}px`}}></div>
+    </div>
   </div>
   
 
