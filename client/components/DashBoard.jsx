@@ -8,7 +8,7 @@ import Bids from "./Bids";
 import Dues from "./Dues";
 import VotingBoard from "./VotingBoard";
 import Logout from "./Logout";
-import home from "../styles/assets/png_h5pgb.png";
+import home from "../styles/assets/png_blue_icon.png";
 import RoleReassigner from "./RoleReassigner";
 /*
   Componet serves as the main UI where users can go to differnt sections
