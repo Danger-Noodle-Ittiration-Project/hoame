@@ -1,8 +1,8 @@
 $primary-color: #f45866; //primary actions and buttons
-$secondary-color: #a2666f; //for backgrounds, secondary actions or less prominent elements
-$tertiary-color: #c45ab3; //Use for highlights, links, or accent elements
-$fourth-color: #631a86; // Use for jeaders, titles and emphasis especially for text
-$fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
+$secondary-color: #3e82da; //for backgrounds, secondary actions or less prominent elements
+$tertiary-color: #3e82da; //Use for highlights, links, or accent elements
+$fourth-color: #2e1cc9; // Use for jeaders, titles and emphasis especially for text
+$fifth-color: #af454e; //Use this for subtle backgrounds or as a hover effect
 
 .dashboard {
   display: flex;
@@ -57,6 +57,7 @@ header {
 }
 
 #welcome.pageTitle {
+  color: $fourth-color;
   display: flex;
   justify-content: center;
 }
@@ -75,6 +76,10 @@ header {
   width: 100px;
   cursor: pointer; /* Pointer cursor for buttons */
   border-radius: 20px;
+
+  &:hover {
+    background-color: $fifth-color;
+  }
 }
 
 img {
@@ -83,5 +88,6 @@ img {
 }
 
 .welcomeBlock {
+  padding-top: 20px;
   width: 100%;
 }
