@@ -9,6 +9,8 @@ import './styles/dashboard.scss';
 import './styles/documents.scss';
 import './styles/checkoutform.scss';
 import './styles/signup.scss'
+import "./styles/roleReassigner.scss";
+import './styles/votingboard.scss';
 
 // get root where it will be render
 const root = createRoot(document.getElementById('root'));
