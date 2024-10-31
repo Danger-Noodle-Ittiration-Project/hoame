@@ -55,13 +55,13 @@ const SignUp = ({ onSignUp }) => {
   };
 
   return (
-    <div>
-      {isSignedUp ? (<h1 className='center-text'> Signup request received!  The Board Secretary will approve access after reviewing.</h1>) : (
+    <div className="signup-container">
+      {isSignedUp ? (<h1 className='h1'> Signup request received!  The Board Secretary will approve access after reviewing.</h1>) : (
         <>
-      <h2
+      {/* <h2
       //  className='center-text'
-      >Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      >Sign Up</h2> */}
+      <form className="signup-form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor='first_name'>First Name:</label>
           <input
