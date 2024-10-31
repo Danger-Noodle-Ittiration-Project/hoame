@@ -13,6 +13,8 @@ duesController.checkStatus = async (req, res, next) => {
     console.log('query from duesController.checkStatus', result.rows[0].dues_paid);
     
     res.locals.status = result.rows[0].dues_paid;
+    // console.log('res.locals.status', res.locals.status);
+    // console.log('typeof res.locals.status', typeof res.locals.status);
 
     return next();
   } catch (err) {
