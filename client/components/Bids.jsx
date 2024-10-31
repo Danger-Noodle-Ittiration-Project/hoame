@@ -60,7 +60,7 @@ const Bids = () => {
           <h1>Upload Document</h1>
           <form>
             <div className='uploadDoc'>
-              <label>Description:</label>
+              <label>Description: </label>
               {/* //when input changes use setTitle to update title state */}
               <input
                 type='text'
@@ -87,7 +87,7 @@ const Bids = () => {
               />
               </div> */}
             <div className='uploadDoc'>
-              <label>Select Document </label>
+              <label>Select Document: </label>
               <input
                 type='file'
                 onChange={selectFile}
