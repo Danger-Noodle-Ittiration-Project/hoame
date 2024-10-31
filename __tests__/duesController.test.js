@@ -4,6 +4,11 @@ const duesController = require("../server/controllers/duesController");
 const server = 'http://localhost:3000';
 
 jest.mock('../server/controllers/duesController');
+jest.mock('stripe', () => {
+  return jest.fn().mockImplementation(() => {
+    return { id: 100 }
+  })
+})
 
 describe('/dues', () => {
   test('should return dues status', async () => {
