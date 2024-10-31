@@ -1,0 +1,88 @@
+
+
+
+$primary-color: #f45866; //primary actions and buttons
+$secondary-color: #a2666f; //for backgrounds, secondary actions or less prominent elements
+$tertiary-color: #c45ab3; //Use for highlights, links, or accent elements
+$fourth-color: #631a86; // Use for jeaders, titles and emphasis especially for text
+$fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
+$error-color: #e74c3c;
+
+
+
+.container {
+  padding: 20px;
+  background-color: $secondary-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
+
+  h2 {
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .status-message {
+    text-align: center;
+    font-weight: bold;
+    color: $secondary-color;
+    &.error {
+      color: $error-color;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      margin-bottom: 15px;
+
+      p {
+        color: $fourth-color;
+        margin: 0 0 10px;
+        font-weight: bold;
+      }
+
+      label {
+        font-size: 0.9rem;
+        color: $fourth-color;
+      }
+
+      select {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid $primary-color;
+        border-radius: 4px;
+        background-color: $fifth-color;
+        color: $fourth-color;
+
+        option {
+          color: $fourth-color;
+        }
+      }
+
+      button {
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: $secondary-color;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: bold;
+
+
+      }
+    }
+  }
+}

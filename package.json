@@ -5,7 +5,7 @@
   "main": "index.js",
   "proxy": "http://localhost:3000",
   "scripts": {
-    "test": "jest --verbose",
+    "test": "jest --verbose --coverage",
     "build": "webpack",
     "start": "webpack serve",
     "server": "nodemon ./server/server.js",
@@ -15,7 +15,9 @@
   "license": "ISC",
   "jest": {
     "testEnvironment": "jest-environment-jsdom",
-    "setupFilesAfterEnv": ["<rootDir>/jest-setup.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest-setup.js"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.25.7",
@@ -34,7 +36,7 @@
     "nodemon": "^3.1.7",
     "pg": "^8.13.1",
     "pg-mock": "^1.0.1",
-    "sass": "^1.79.5",
+    "sass": "^1.80.5",
     "sass-loader": "^16.0.2",
     "style-loader": "^4.0.0",
     "supertest": "^7.0.0",
@@ -48,6 +50,7 @@
     "@testing-library/jest-dom": "^6.6.2",
     "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
+    "and": "^0.0.3",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "buffer": "^6.0.3",
@@ -56,6 +59,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
     "express-session": "^1.18.1",
+    "jest-environment-jsdom": "^29.7.0",
     "mime-types": "^2.1.35",
     "multer": "^1.4.5-lts.1",
     "react": "^18.3.1",
