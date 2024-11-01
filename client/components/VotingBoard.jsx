@@ -85,6 +85,7 @@ const VotingBoard = ()=>{
 
     return(
         <div id='votingBoard'>
+            <h1>Voting Board</h1>
             {getQuestions}
         </div>
     )

@@ -141,7 +141,7 @@ const Dashboard = ({ onLogout  }) => {
           className={`tab ${activeTab === "VotingBoard" ? "active" : ""}`}
           onClick={handleClick}
         >
-          VotingBoard
+          Voting Board
         </button>
         {userPermissions.includes("admin") && (
           <button
@@ -160,7 +160,7 @@ const Dashboard = ({ onLogout  }) => {
         {activeTab === "Directory" && <Directory />}
         {activeTab === "Bids" && <Bids />}
         {activeTab === "Dues" && <Dues />}
-        {activeTab === "VotingBoard" && <VotingBoard />}
+        {activeTab === "Voting Board" && <VotingBoard />}
         {activeTab === "Role Reassigner" &&
           userPermissions.includes("admin") && (
             <RoleReassigner

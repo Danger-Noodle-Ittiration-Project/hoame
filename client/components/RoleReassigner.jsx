@@ -94,8 +94,8 @@ const RoleReassigner = ({ onUpdateStatus, userPermissions }) => {
   };
 
   return (
-    <div className="container">
-      <h2>Role Reassignment for Pending Approval Users</h2>
+    <div className='container'>
+      <h1>Role Reassignment for Pending Approval Users</h1>
       {statusMessage && <p>{statusMessage}</p>}
       {pendingUsers.length > 0 ? (
         <ul>
