@@ -22,19 +22,22 @@ const Directory = () => {
   };
 
   return (
-    <div className='cardContainer'>
-      {/* if users exist, map through and render a DirectoryCard for each user */}
-      {users.length > 0
-        ? users.map((user) => (
-            <DirectoryCard
-              key={user.id} // unique key
-              first_name={user.first_name} // prop
-              street_address={user.street_address} // prop
-              phone={user.phone}
-              prop
-            />
-          ))
-        : (getUsers(), (<p> LoadingUsers... </p>))}
+    <div>
+      <h1>Directory</h1>
+      <div className='cardContainer'>
+        {/* if users exist, map through and render a DirectoryCard for each user */}
+        {users.length > 0
+          ? users.map((user) => (
+              <DirectoryCard
+                key={user.id} // unique key
+                first_name={user.first_name} // prop
+                street_address={user.street_address} // prop
+                phone={user.phone}
+                prop
+              />
+            ))
+          : (getUsers(), (<p> LoadingUsers... </p>))}
+      </div>
     </div>
   );
 };
