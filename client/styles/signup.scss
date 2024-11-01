@@ -25,12 +25,13 @@ h1 {
   background-color: #f3f4f6;
   min-height: 100vh;
   padding: 3rem;
+  text-align: center;
 }
 
 .signup-form {
   background: white;
   width:100%;
-  max-width: 450px;
+  max-width: 400px;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 3px 10px;
@@ -80,4 +81,10 @@ transition: background 0.3s ease;
 .signup-form button:hover {
 background-color:blue;
 color:beige;
+}
+.registration-heading {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: left; 
+  width:100%;
 }
