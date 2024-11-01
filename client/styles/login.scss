@@ -62,3 +62,17 @@ $fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
   cursor: pointer;
   background-color: $fourth-color;
 }
+.signUpPrompt {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #555;
+
+    a {
+      color: #4CAF50;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }

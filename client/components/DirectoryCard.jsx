@@ -9,10 +9,10 @@ import React from 'react';
 const DirectoryCard = ({ first_name, street_address, phone }) => {
   return (
     <div className='memberCard'>
-      {/* display user's first name as card title */}
+      {/* Display user's first name as card title */}
       <h2 className='messageTitle'>{first_name}</h2>
-      <p>Unit Number: {street_address}</p>
-      <p>Phone:{phone}</p>
+      <p className='address'>Unit Number: {street_address}</p>
+      <p className='phone'>Phone: {phone}</p>
     </div>
   );
 };
