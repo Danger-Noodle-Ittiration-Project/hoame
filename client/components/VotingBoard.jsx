@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import VotingCard from './VotingCard'
 
-const VotingBoard = ()=>{
+const VotingBoard = (props)=>{
 
     const [getQuestions, setQuestions] = useState([]);
     const [getVotes, setVotes] = useState(0);
+    const permission = props.roles.includes('admin');
 
     function answer(e, question) {
         fetch(`http://localhost:3000/api/vote/answer`, {
@@ -51,7 +52,7 @@ const VotingBoard = ()=>{
 
             for(let i = 0; i < data.length; i ++){
                 const votingTotals = countingVotes(rawData.votes,data[i].id);
-                votingCards.push(<VotingCard voted={votingTotals.users.includes(rawData.userId)} id={data[i].id} title ={data[i].title} description={data[i].description} yesVotes={votingTotals.yea} noVotes={votingTotals.nay} totalVotes={votingTotals.yea+votingTotals.nay} func={answer} />)
+                votingCards.push(<VotingCard voted={votingTotals.users.includes(rawData.userId)} id={data[i].id} title ={data[i].title} description={data[i].description} yesVotes={votingTotals.yea} noVotes={votingTotals.nay} totalVotes={votingTotals.yea+votingTotals.nay} func={answer} permission={permission} />)
             }
             setQuestions(votingCards);
 

@@ -160,7 +160,7 @@ const Dashboard = ({ onLogout  }) => {
         {activeTab === "Directory" && <Directory />}
         {activeTab === "Bids" && <Bids />}
         {activeTab === "Dues" && <Dues />}
-        {activeTab === "Voting Board" && <VotingBoard />}
+        {activeTab === "Voting Board" && <VotingBoard roles={userPermissions}/>}
         {activeTab === "Role Reassigner" &&
           userPermissions.includes("admin") && (
             <RoleReassigner
