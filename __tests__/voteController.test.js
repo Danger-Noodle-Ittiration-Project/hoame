@@ -4,11 +4,16 @@ const db = require("../server/models/hoameModels");
 // const server = "http://localhost:3000";
 const httpMocks = require("node-mocks-http");
 const userController = require("../server/controllers/userController");
+const { default: VotingBoard } = require("../client/components/VotingBoard");
 
 
 
 describe('Voting', () =>{
     test('Votes on question 2 and returns', () =>{
+        let board;
+        beforeAll(() =>{
+            board = render(<VotingBoard />);
+        })
         
     })
 })
