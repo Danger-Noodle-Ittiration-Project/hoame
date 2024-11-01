@@ -2,7 +2,7 @@ $primary-color: #f45866; //primary actions and buttons
 $secondary-color: #3e82da; //for backgrounds, secondary actions or less prominent elements
 $tertiary-color: #3e82da; //Use for highlights, links, or accent elements
 $fourth-color: #2e1cc9; // Use for jeaders, titles and emphasis especially for text
-$fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
+$fifth-color: #af454e; //Use this for subtle backgrounds or as a hover effect
 
 .announcementsBar {
   display: flex;
@@ -39,7 +39,7 @@ $fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
 }
 
 .titleInput {
-  color: $fourth-color;
+  color: black;
   font-size: 20px;
   font-weight: bold;
 }
@@ -57,6 +57,10 @@ $fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
   width: 100px;
   cursor: pointer; /* Pointer cursor for buttons */
   border-radius: 15px;
+
+  &:hover {
+    background-color: $fifth-color;
+  }
 }
 .submitButton {
   width: 100%;

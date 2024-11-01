@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../styles/roleReassigner.scss";
 
 const RoleReassigner = () => {
   const [pendingUsers, setPendingUsers] = useState([]);
@@ -83,7 +84,7 @@ const RoleReassigner = () => {
   };
 
   return (
-    <div>
+    <div className='container'>
       <h2>Role Reassignment for Pending Approval Users</h2>
       {statusMessage && <p>{statusMessage}</p>}
       {pendingUsers.length > 0 ? (
@@ -102,7 +103,6 @@ const RoleReassigner = () => {
                   handleRoleChange(user.id, e.target.selectedOptions)
                 }
               >
-                
                 {roles.map((role) => (
                   <option key={role.id} value={role.id}>
                     {role.role_name}

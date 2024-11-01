@@ -2,19 +2,19 @@ $primary-color: #f45866; //primary actions and buttons
 $secondary-color: #3e82da; //for backgrounds, secondary actions or less prominent elements
 $tertiary-color: #3e82da; //Use for highlights, links, or accent elements
 $fourth-color: #2e1cc9; // Use for jeaders, titles and emphasis especially for text
-$fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
+$fifth-color: #af454e; //Use this for subtle backgrounds or as a hover effect
 
 
 .progressBar{
-    width: 200px;
-    background-color: $fourth-color;
-    height: 10px;
+    width: 100px;
+    background-color: $primary-color;
+    height: 20px;
     border-radius: 13px;
     padding: 3px;
 }
 
 .progressBar div{
-    background-color: $primary-color;
+    background-color: $fifth-color;
   /* Adjust with JavaScript */
   height: 7px;
   border-radius: 13px;
