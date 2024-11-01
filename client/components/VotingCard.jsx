@@ -26,7 +26,7 @@ const VotingCard = (props) => {
 
       <div>
         <p>Total Votes: {props.totalVotes}</p>
-        {props.voted ? adminView: <div></div>}
+        {props.permission ? adminView: <div></div>}
         <div>
           You {props.voted ? 'have': 'have not'} voted on this proposal
         </div>
