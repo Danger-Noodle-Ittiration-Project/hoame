@@ -246,6 +246,26 @@ router.get('/roles', sessionController.isAuthenticated, roleController.getAllRol
   res.status(200).json(res.locals.roles);
 });
 
+// Route to get roles for the currently logged-in user
+router.get('/user/roles', sessionController.isAuthenticated, async (req, res) => {
+  try {
+    // Check if the user is logged in and has a session
+    if (!req.session.user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const userId = req.session.user.id; // Extract user ID from session
+    console.log("Fetching roles for user ID:", userId); // Log the user ID for verification
+
+    const roles = await roleController.getUserRoles(userId); // Fetch roles using roleController
+    console.log("Roles fetched:", roles); // Log roles for confirmation
+    return res.status(200).json({ roles });
+  } catch (error) {
+    console.error("Error fetching user roles:", error);
+    return res.status(500).json({ message: "Error fetching roles" });
+  }
+});
+
 // route for file upload.   --- Not in use
 // router.post(
 //   '/upload',

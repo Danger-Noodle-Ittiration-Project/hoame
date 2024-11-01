@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "../styles/roleReassigner.scss";
 
-const RoleReassigner = () => {
+const RoleReassigner = ({ onUpdateStatus, userPermissions }) => {
+  // if (!userPermissions.includes("admin")) {
+  //   return <p>You do not have permissions to assign roles.</p>;
+  // }
+
   const [pendingUsers, setPendingUsers] = useState([]);
   const [roles, setRoles] = useState([]);
   const [selectedRoles, setSelectedRoles] = useState({});
@@ -40,6 +44,12 @@ const RoleReassigner = () => {
     fetchPendingUsers();
     fetchRoles();
   }, []);
+
+  useEffect(() => {
+    if (statusMessage) {
+      onUpdateStatus(statusMessage);
+    }
+  }, [statusMessage, onUpdateStatus]);
 
   const handleRoleChange = (userId, selectedOptions) => {
     const selectedRoleIds = Array.from(
