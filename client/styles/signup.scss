@@ -88,3 +88,17 @@ color:beige;
   text-align: left; 
   width:100%;
 }
+.login-prompt {
+    margin-top: 1.0rem;
+    font-size: 0.9rem;
+    color: #555;
+
+    a {
+      color: #4CAF50;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }

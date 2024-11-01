@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 const SignUp = ({ onSignUp }) => {
   // state for whether user completed signup or not
   const [isSignedUp, setIsSignedUp] = useState(false);
@@ -55,77 +55,87 @@ const SignUp = ({ onSignUp }) => {
   };
 
   return (
-    <div className="signup-container">
-      {isSignedUp ? (<h1 className='h1'> Signup request received!  The Board Secretary will approve access after reviewing.</h1>) : (
+    <div className='signup-container'>
+      {isSignedUp ? (
+        <h1 className='h1'>
+          {' '}
+          Signup request received! The Board Secretary will approve access after
+          reviewing.
+        </h1>
+      ) : (
         <>
-      {/* <h2
+          {/* <h2
       //  className='center-text'
       >Sign Up</h2> */}
-      <form className="signup-form" onSubmit={handleSubmit}>
-        <div>
-          <h1 className="registration-heading">Registration</h1>
-          <label htmlFor='first_name'>First Name:</label>
-          <input
-            type='text'
-            name='first_name'
-            value={formData.first_name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor='last_name'>Last Name:</label>
-          <input
-            type='text'
-            name='last_name'
-            value={formData.last_name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor='street_address'>Street Address:</label>
-          <input
-            type='text'
-            name='street_address'
-            value={formData.street_address}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor='phone'>Phone:</label>
-          <input
-            type='text'
-            name='phone'
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor='username'>Username:</label>
-          <input
-            type='text'
-            name='username'
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor='password'>Password:</label>
-          <input
-            type='password'
-            name='password'
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button type='submit'>Sign Up</button>
-      </form>
-      </>
+          <form className='signup-form' onSubmit={handleSubmit}>
+            <div>
+              <h1 className='registration-heading'>Registration</h1>
+              <label htmlFor='first_name'>First Name:</label>
+              <input
+                type='text'
+                name='first_name'
+                value={formData.first_name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor='last_name'>Last Name:</label>
+              <input
+                type='text'
+                name='last_name'
+                value={formData.last_name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor='street_address'>Street Address:</label>
+              <input
+                type='text'
+                name='street_address'
+                value={formData.street_address}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor='phone'>Phone:</label>
+              <input
+                type='text'
+                name='phone'
+                value={formData.phone}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor='username'>Username:</label>
+              <input
+                type='text'
+                name='username'
+                value={formData.username}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div>
+              <label htmlFor='password'>Password:</label>
+              <input
+                type='password'
+                name='password'
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button type='submit'>Sign Up</button>
+            <p className='login-prompt'>
+              {/* link for signing up for an account */}
+              already have an account? <Link to='/login'>Log in</Link>
+            </p>
+          </form>
+        </>
       )}
     </div>
   );
