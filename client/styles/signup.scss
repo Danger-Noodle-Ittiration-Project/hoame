@@ -5,17 +5,18 @@
 // $fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
 
 
-.h1 {
-  // display: flex;
-  // justify-content: center;
+h1 {
+  display: flex;
+  justify-content: center;
   // align-items: start;
   text-align: center;
   height: 100vh;
   // flex-direction: column;
   font-family: 'Veranda', sans-serif;
   height: 100%;
-  margin: 0px;
+  // margin: 0px;
   color: grey;
+  // padding: 50px;
 }
 .signup-container {
   display:flex;

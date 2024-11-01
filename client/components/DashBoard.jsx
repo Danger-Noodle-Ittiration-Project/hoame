@@ -114,7 +114,7 @@ const Dashboard = ({ onLogout }) => {
           className={`tab ${activeTab === 'VotingBoard' ? 'active' : ''}`}
           onClick={handleClick}
         >
-          VotingBoard
+          Voting Board
         </button>
         <button
           className={`tab ${activeTab === 'Role Reassigner' ? 'active' : ''}`}
@@ -131,7 +131,7 @@ const Dashboard = ({ onLogout }) => {
         {activeTab === 'Directory' && <Directory />}
         {activeTab === 'Bids' && <Bids />}
         {activeTab === 'Dues' && <Dues />}
-        {activeTab === 'VotingBoard' && <VotingBoard />}
+        {activeTab === 'Voting Board' && <VotingBoard />}
         {activeTab === 'Role Reassigner' && <RoleReassigner />}
       </div>
     </div>
