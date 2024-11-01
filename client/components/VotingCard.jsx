@@ -10,11 +10,11 @@ const VotingCard = (props) => {
   <div>
     <p >Yes: {(props.yesVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1)).toFixed(1)}%</p> 
     <div className='progressBar'>
-      <div style={{ width: `${(props.yesVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1))}px`}}></div>
+      <div style={{ width: `${(props.yesVotes*200/(props.totalVotes > 0 ? props.totalVotes: 1))}px`}}></div>
     </div>
     <p>No: {(props.noVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1)).toFixed(1)}%</p>
     <div className='progressBar'>
-      <div style={{ width: `${(props.noVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1))}px`}}></div>
+      <div style={{ width: `${(props.noVotes*200/(props.totalVotes > 0 ? props.totalVotes: 1))}px`}}></div>
     </div>
   </div>
   
@@ -26,7 +26,7 @@ const VotingCard = (props) => {
 
       <div>
         <p>Total Votes: {props.totalVotes}</p>
-        {adminView}
+        {props.voted ? adminView: <div></div>}
         <div>
           You {props.voted ? 'have': 'have not'} voted on this proposal
         </div>
