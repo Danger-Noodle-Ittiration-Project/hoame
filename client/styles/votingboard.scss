@@ -6,7 +6,7 @@ $fifth-color: #af454e; //Use this for subtle backgrounds or as a hover effect
 
 
 .progressBar{
-    width: 100px;
+    width: 200px;
     background-color: $primary-color;
     height: 20px;
     border-radius: 13px;
@@ -14,8 +14,7 @@ $fifth-color: #af454e; //Use this for subtle backgrounds or as a hover effect
 }
 
 .progressBar div{
-    background-color: $fifth-color;
-  /* Adjust with JavaScript */
-  height: 7px;
+  background-color: $fourth-color;
+  height: 17px;
   border-radius: 13px;
 }
