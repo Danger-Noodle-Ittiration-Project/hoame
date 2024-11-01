@@ -9,19 +9,39 @@ h1 {
 }
 
 .memberCard {
-  flex: 1 1 calc(33.333% - 10px);
-  padding: 1em;
-  background-color: white;
-  border: 2px solid hsl(0, 0%, 75%);
-  margin: 5px;
-  box-shadow: 3px 3px 3px hsl(0, 0%, 75%);
-  border-radius: 6px;
-  width: 18rem;
-  box-sizing: border-box;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  width: 250px;
+  text-align: center;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+    border-color: #b0c4de;
+  }
+
+  .messageTitle {
+    font-size: 1.4rem;
+    color: #333333;
+    margin-bottom: 8px;
+  }
+
+  .address,
+  .phone {
+    font-size: 1rem;
+    color: #555555;
+  }
 }
 .cardContainer {
   display: flex;
-  flex-wrap: wrap; /* Allows items to wrap to the next row */
-  gap: 10px; /* Space between the cards */
-  justify-content: space-between; /* Distributes space between the cards */
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px;
+  justify-content: center;
 }
+

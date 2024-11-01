@@ -95,13 +95,14 @@ const Login = ({ onLogin }) => {
             {' '}
             Login with Google{' '}
           </button>
-          <p>
+        </div>
+          <p className='signUpPrompt'>
             {/* link for signing up for an account */}
             Don't have an account? <Link to='/signup'>Sign Up</Link>
           </p>
         </div>
       </div>
-    </div>
+    
   );
 };
 

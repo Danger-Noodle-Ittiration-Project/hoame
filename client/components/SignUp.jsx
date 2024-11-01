@@ -63,6 +63,7 @@ const SignUp = ({ onSignUp }) => {
       >Sign Up</h2> */}
       <form className="signup-form" onSubmit={handleSubmit}>
         <div>
+          <h1 className="registration-heading">Registration</h1>
           <label htmlFor='first_name'>First Name:</label>
           <input
             type='text'
