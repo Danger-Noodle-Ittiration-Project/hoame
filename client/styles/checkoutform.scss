@@ -4,6 +4,10 @@ $tertiary-color: #3e82da; //Use for highlights, links, or accent elements
 $fourth-color: #2e1cc9; // Use for jeaders, titles and emphasis especially for text
 $fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
 
+h1 {
+  padding: 0.2em;
+}
+
 .payButtonContainer {
   display: flex;
   justify-content: center;

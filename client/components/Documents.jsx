@@ -97,7 +97,7 @@ const Documents = () => {
 
   return (
     <div>
-      <h2>Documents HOAme</h2>
+      <h1>Documents</h1>
       {/* {display the list of document after fetching} */}
       {documents.length > 0 ? documents : <p>Fetching Documents....</p>}
     </div>

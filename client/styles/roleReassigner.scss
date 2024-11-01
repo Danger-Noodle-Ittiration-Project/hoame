@@ -2,33 +2,27 @@
 
 
 // $primary-color: #f45866; //primary actions and buttons
-$primary-color: #000000;
+$primary-color: #f45866; //primary actions and buttons
 $secondary-color: #3e82da; //for backgrounds, secondary actions or less prominent elements
 $tertiary-color: #3e82da; //Use for highlights, links, or accent elements
 $fourth-color: #2e1cc9; // Use for jeaders, titles and emphasis especially for text
-$fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
+$fifth-color: #af454e; //Use this for subtle backgrounds or as a hover effect
 $error-color: #e74c3c;
 
 
 
 .container {
-  padding: 20px;
-  background-color: $secondary-color;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
-  margin: 20px auto;
-
-  h2 {
-    color: $primary-color;
-    text-align: center;
-    margin-bottom: 20px;
-  }
+  // padding: 20px;
+  // background-color: $secondary-color;
+  // border-radius: 8px;
+  // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  // max-width: 600px;
+  // margin: 20px auto;
 
   .status-message {
     text-align: center;
     font-weight: bold;
-    color: $secondary-color;
+    color: black;
     &.error {
       color: $error-color;
     }
@@ -61,9 +55,9 @@ $error-color: #e74c3c;
         width: 100%;
         padding: 8px;
         margin-top: 5px;
-        border: 1px solid $primary-color;
+        border: 1px solid hsl(0, 0%, 75%);
         border-radius: 4px;
-        background-color: $fifth-color;
+        // background-color: $fifth-color;
         color: $fourth-color;
 
         option {
@@ -74,7 +68,7 @@ $error-color: #e74c3c;
       button {
         margin-top: 10px;
         padding: 8px 12px;
-        background-color: $secondary-color;
+        background-color: $primary-color;
         border: none;
         border-radius: 4px;
         color: #fff;
@@ -82,7 +76,9 @@ $error-color: #e74c3c;
         font-size: 0.9rem;
         font-weight: bold;
 
-
+        &:hover {
+          background-color: $fifth-color;
+        }
       }
     }
   }
