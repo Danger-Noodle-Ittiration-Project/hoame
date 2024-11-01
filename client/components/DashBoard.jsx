@@ -16,7 +16,7 @@ import RoleReassigner from './RoleReassigner';
   to handle signout
 */
 
-const Dashboard = ({ onLogout }) => {
+const Dashboard = ({ onLogout  }) => {
   const location = useLocation();
 
   // old way to set name
@@ -26,14 +26,41 @@ const Dashboard = ({ onLogout }) => {
   // // state to track current active tab, default is announcements
   // const [activeTab, setActiveTab] = useState('Announcements');
 
-  const [activeTab, setActiveTab] = useState('Announcements');
-  const [firstName, setFirstName] = useState('Guest');
+  const [activeTab, setActiveTab] = useState("Announcements");
+  const [firstName, setFirstName] = useState("Guest");
+  const [roleReassignStatus, setRoleReassignStatus] = useState(null); // State to store data from RoleReassigner
+  const [userPermissions, setUserPermissions] = useState([]); // State to store user permissions
+
+  
+  useEffect(() => {
+    const fetchUserPermissions = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/user/roles", {
+          credentials: "include",
+        });
+        const data = await response.json();
+        setUserPermissions(data.roles || []);
+      } catch (error) {
+        console.error("Error fetching user permissions:", error);
+      }
+    };
+
+    fetchUserPermissions();
+  }, []);
+
+  // Function to handle data from RoleReassigner
+  const handleRoleReassignUpdate = (statusMessage) => {
+    setRoleReassignStatus(statusMessage);
+    console.log("Role Reassigner Update:", statusMessage); // Optional: Log the status message
+  };
+
+  console.log("User permissions in Dashboard:", userPermissions);
 
   useEffect(() => {
     if (location.state?.prop) {
-      localStorage.setItem('firstName', location.state.prop);
+      localStorage.setItem("firstName", location.state.prop);
     }
-    const storedName = localStorage.getItem('firstName');
+    const storedName = localStorage.getItem("firstName");
     if (storedName) {
       setFirstName(storedName);
     }
@@ -68,11 +95,11 @@ const Dashboard = ({ onLogout }) => {
   // };
 
   return (
-    <div className='dashboard'>
+    <div className="dashboard">
       <header>
-        <div className='welcomeBlock'>
-          <h1 className='pageTitle' id='welcome'>
-            <img src={home} alt='home' className='homeIcon' /> Welcome HOAme,{' '}
+        <div className="welcomeBlock">
+          <h1 className="pageTitle" id="welcome">
+            <img src={home} alt="home" className="homeIcon" /> Welcome HOAme,{" "}
             {firstName}!
           </h1>
         </div>
@@ -81,58 +108,67 @@ const Dashboard = ({ onLogout }) => {
       </header>
 
       {/* Button to swtich to announcements tabs */}
-      <nav className='navigation'>
+      <nav className="navigation">
         <button
-          className={`tab ${activeTab === 'Announcements' ? 'active' : ''}`}
+          className={`tab ${activeTab === "Announcements" ? "active" : ""}`}
           onClick={handleClick}
         >
           Announcements
         </button>
         {/* Dropdown menu for differnt tabs */}
-        <select onChange={handleOptions} className='select'>
-          <option value='' disabled selected>
+        <select onChange={handleOptions} className="select">
+          <option value="" disabled selected>
             Select Tab
           </option>
-          <option value='Documents'>Documents</option>
+          <option value="Documents">Documents</option>
           {/* <option value='MeetingMinutes'>Meeting Minutes</option> */}
-          <option value='Bids'>Upload Documents</option>
+          <option value="Bids">Upload Documents</option>
         </select>
         {/* Button to directory tab */}
         <button
-          className={`tab ${activeTab === 'Directory' ? 'active' : ''}`}
+          className={`tab ${activeTab === "Directory" ? "active" : ""}`}
           onClick={handleClick}
         >
           Directory
         </button>
         <button
-          className={`tab ${activeTab === 'Dues' ? 'active' : ''}`}
+          className={`tab ${activeTab === "Dues" ? "active" : ""}`}
           onClick={handleClick}
         >
           Dues
         </button>
         <button
-          className={`tab ${activeTab === 'VotingBoard' ? 'active' : ''}`}
+          className={`tab ${activeTab === "VotingBoard" ? "active" : ""}`}
           onClick={handleClick}
         >
           VotingBoard
         </button>
-        <button
-          className={`tab ${activeTab === 'Role Reassigner' ? 'active' : ''}`}
-          onClick={handleClick}
-        >
-          Role Reassigner
-        </button>
+        {userPermissions.includes("admin") && (
+          <button
+            className={`tab ${activeTab === "Role Reassigner" ? "active" : ""}`}
+            onClick={handleClick}
+          >
+            Role Reassigner
+          </button>
+        )}
       </nav>
 
       {/* Render componets based on the active tab*/}
-      <div className='window'>
-        {activeTab === 'Announcements' && <Announcements />}
-        {activeTab === 'Documents' && <Documents />}
-        {activeTab === 'Directory' && <Directory />}
-        {activeTab === 'Bids' && <Bids />}
-        {activeTab === 'Dues' && <Dues />}
-        {activeTab === 'VotingBoard' && <VotingBoard />}
-        {activeTab === 'Role Reassigner' && <RoleReassigner />}
+      <div className="window">
+        {activeTab === "Announcements" && <Announcements />}
+        {activeTab === "Documents" && <Documents />}
+        {activeTab === "Directory" && <Directory />}
+        {activeTab === "Bids" && <Bids />}
+        {activeTab === "Dues" && <Dues />}
+        {activeTab === "VotingBoard" && <VotingBoard />}
+        {activeTab === "Role Reassigner" &&
+          userPermissions.includes("admin") && (
+            <RoleReassigner
+              onUpdateStatus={handleRoleReassignUpdate}
+              userPermissions={userPermissions}
+            />
+          )}
+        {roleReassignStatus && <p>{roleReassignStatus}</p>}
       </div>
     </div>
   );
