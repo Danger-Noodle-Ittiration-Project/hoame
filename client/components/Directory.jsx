@@ -31,6 +31,7 @@ const Directory = () => {
               <DirectoryCard
                 key={user.id} // unique key
                 first_name={user.first_name} // prop
+                last_name={user.last_name}
                 street_address={user.street_address} // prop
                 phone={user.phone}
                 prop

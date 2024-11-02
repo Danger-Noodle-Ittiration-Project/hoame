@@ -22,13 +22,13 @@ const VotingCard = (props) => {
   return (
     <div className='questionCard'>
       <h2>{props.title}</h2>
-      {props.description}
+      <p>Description: {props.description}</p>
 
       <div>
         <p>Total Votes: {props.totalVotes}</p>
         {props.permission ? adminView: <div></div>}
         <div>
-          You {props.voted ? 'have': 'have not'} voted on this proposal
+          <p>You {props.voted ? 'have': 'have not'} voted on this proposal</p>
         </div>
       </div>
 
