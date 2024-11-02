@@ -1,9 +1,8 @@
-// $primary-color: #f45866; //primary actions and buttons
-// $secondary-color: #a2666f; //for backgrounds, secondary actions or less prominent elements
-// $tertiary-color: #c45ab3; //Use for highlights, links, or accent elements
-// $fourth-color: #631a86; // Use for jeaders, titles and emphasis especially for text
-// $fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
-
+$primary-color: #f45866; //primary actions and buttons
+$secondary-color: #3e82da; //for backgrounds, secondary actions or less prominent elements
+$tertiary-color: #3e82da; //Use for highlights, links, or accent elements
+$fourth-color: #2e1cc9; // Use for jeaders, titles and emphasis especially for text
+$fifth-color: #f49390; //Use this for subtle backgrounds or as a hover effect
 
 h1 {
   display: flex;
@@ -51,7 +50,7 @@ font-weight: 500;
 }
 
 .signup-form input {
-width: 100%;
+width: 90%;
 padding: 0.75rem;
 margin-bottom: 1.25rem;
 border: 1px solid #ccc;
@@ -68,7 +67,7 @@ box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
 .signup-form button {
 width: 60%;
 padding: 0.75rem;
-background-color: #007bff;
+background-color: $secondary-color;
 color: white;
 font-size: 1rem;
 font-weight: bold;
@@ -79,7 +78,7 @@ transition: background 0.3s ease;
 }
 
 .signup-form button:hover {
-background-color:blue;
+background-color: $fourth-color;
 color:beige;
 }
 .registration-heading {

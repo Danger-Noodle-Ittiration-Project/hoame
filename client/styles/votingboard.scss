@@ -9,7 +9,6 @@ $fifth-color: #af454e; //Use this for subtle backgrounds or as a hover effect
 
     width: 200px;
     background-color: $tertiary-color;
-
     height: 20px;
     border-radius: 13px;
     padding: 3px;
@@ -18,8 +17,26 @@ $fifth-color: #af454e; //Use this for subtle backgrounds or as a hover effect
 .progressBar div{
 
   height: 18px;
-
   background-color: $fourth-color;
-
   border-radius: 13px;
+}
+
+.questionCard {
+  padding: 1em;
+  border-bottom: 1px solid hsl(0, 0%, 75%);
+
+  button {
+      padding: 0.5em 1em; /* Add padding for the button */
+      margin-right: 20px;
+      background-color: $primary-color; /* Use your primary color */
+      color: white; /* Text color */
+      border: none; /* Remove default border */
+      border-radius: 5px; /* Rounded corners */
+      cursor: pointer; /* Pointer cursor */
+      transition: background-color 0.3s ease;
+      
+      &:hover {
+        background-color: $fifth-color;
+      }
+  }
 }

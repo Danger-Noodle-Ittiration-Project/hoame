@@ -132,7 +132,7 @@ const SignUp = ({ onSignUp }) => {
             <button type='submit'>Sign Up</button>
             <p className='login-prompt'>
               {/* link for signing up for an account */}
-              already have an account? <Link to='/login'>Log in</Link>
+              Already have an account? <Link to='/login'>Log in</Link>
             </p>
           </form>
         </>

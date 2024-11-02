@@ -88,13 +88,13 @@ const Login = ({ onLogin }) => {
           </button>
 
           {/* potential button for google login */}
-          <button
+          {/* <button
             onClick={() => alert('Google login clicked')}
             className='loginButton1'
           >
             {' '}
             Login with Google{' '}
-          </button>
+          </button> */}
         </div>
           <p className='signUpPrompt'>
             {/* link for signing up for an account */}
