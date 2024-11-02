@@ -138,7 +138,7 @@ const Dashboard = ({ onLogout  }) => {
           Dues
         </button>
         <button
-          className={`tab ${activeTab === "VotingBoard" ? "active" : ""}`}
+          className={`tab ${activeTab === "Voting Board" ? "active" : ""}`}
           onClick={handleClick}
         >
           Voting Board
@@ -168,7 +168,6 @@ const Dashboard = ({ onLogout  }) => {
               userPermissions={userPermissions}
             />
           )}
-        {roleReassignStatus && <p>{roleReassignStatus}</p>}
       </div>
     </div>
   );

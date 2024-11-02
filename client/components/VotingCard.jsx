@@ -6,8 +6,8 @@ const VotingCard = (props) => {
     props.func(event.target.value, props.id)
   }
 
-  const adminView = 
-  <div>
+  const adminView = props.permission && props.totalVotes > 0 
+  ? <div>
     <p >Yes: {(props.yesVotes*100/(props.totalVotes > 0 ? props.totalVotes: 1)).toFixed(1)}%</p> 
     <div className='progressBar'>
       <div style={{ width: `${(props.yesVotes*200/(props.totalVotes > 0 ? props.totalVotes: 1))}px`}}></div>
@@ -16,7 +16,8 @@ const VotingCard = (props) => {
     <div className='progressBar'>
       <div style={{ width: `${(props.noVotes*200/(props.totalVotes > 0 ? props.totalVotes: 1))}px`}}></div>
     </div>
-  </div>
+  </div> 
+  : <div></div>
   
 
   return (
@@ -26,7 +27,7 @@ const VotingCard = (props) => {
 
       <div>
         <p>Total Votes: {props.totalVotes}</p>
-        {props.permission ? adminView: <div></div>}
+        {adminView}
         <div>
           <p>You {props.voted ? 'have': 'have not'} voted on this proposal</p>
         </div>

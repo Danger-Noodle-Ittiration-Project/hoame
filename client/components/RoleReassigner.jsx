@@ -102,7 +102,7 @@ const RoleReassigner = ({ onUpdateStatus, userPermissions }) => {
           {pendingUsers.map((user) => (
             <li key={user.id}>
               <p>
-                {user.first_name} {user.last_name} - {user.username}
+                {user.first_name} {user.last_name} - Username: {user.username}
               </p>
               <label htmlFor={`role-${user.id}`}>Select New Roles:</label>
               <select
