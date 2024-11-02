@@ -7,6 +7,10 @@ $fifth-color: #af454e; //Use this for subtle backgrounds or as a hover effect
 .documentCard {
   padding: 1em;
   border-bottom: 1px solid hsl(0, 0%, 75%);
+
+  p {
+    color: gray;
+  }
 }
 
 .viewButton {

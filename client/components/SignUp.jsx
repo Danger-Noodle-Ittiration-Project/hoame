@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 const SignUp = ({ onSignUp }) => {
   // state for whether user completed signup or not
@@ -14,6 +14,12 @@ const SignUp = ({ onSignUp }) => {
   });
 
   const navigate = useNavigate();
+
+  function reDirect(){
+    setTimeout(() => {
+      navigate('/login');
+    }, 3*1000);
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,7 +66,8 @@ const SignUp = ({ onSignUp }) => {
         <h1 className='h1'>
           {' '}
           Signup request received! The Board Secretary will approve access after
-          reviewing.
+          reviewing. You will be redirected shortly.
+          {reDirect()}
         </h1>
       ) : (
         <>
